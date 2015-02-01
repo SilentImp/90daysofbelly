@@ -1,0 +1,19 @@
+{
+  "name": "90daysofbelly",
+  "version": "0.0.0",
+  "description": "90 days of my belly",
+  "main": "production/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SilentImp/90daysofbelly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilentImp/90daysofbelly/issues"
+  },
+  "homepage": "https://github.com/SilentImp/90daysofbelly"
+}

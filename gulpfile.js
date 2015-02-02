@@ -83,10 +83,13 @@ gulp.task('jade', function () {
 });
 
 gulp.task('deploy', function () {
-  return gulp.src(path.production.root)
+  console.log('deploying');
+  return gulp.src('production/**')
           .pipe(deploy({
             cacheDir:   'gh-cache',
             remoteUrl:  'git@github.com:SilentImp/90daysofbelly.git'
+          }).on('error', function(){
+            console.log('error', arguments);
           }));
 });
 

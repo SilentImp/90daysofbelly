@@ -4,9 +4,20 @@ html(lang="ru")
     meta(charset="UTF-8")
     title 90 Дней Живота
     link(href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic', rel='stylesheet', type='text/css')
     link(rel="stylesheet", href="css/styles.css")
+
+    script(src="js/jquery/dist/jquery.min.js")
   body
+    
+    form.note-form(action="/add/", method="post")
+      textarea(name="note", cols="30", rows="10", placeholder="Дорогой дневничек, это я, жиробас, и сегодня…")
+      nav
+        button.note-form__submit(type="submit")
+        button.note-form__cancel(type="reset")
+
     section.page
+
       section.landing
         h1.landing__title 90 дней
           br
@@ -23,9 +34,10 @@ html(lang="ru")
           .day__weight 97 кг
           .day__link
           nav.day__media
-            a.day__photos(href="#") 
+            button.day__photos(type="button")
               span.day__photos-count 5
                 span фото
+            button.day__notes(type="button")
 
         section.day
           .day__date
@@ -33,6 +45,10 @@ html(lang="ru")
               span день
           .day__weight 97 кг
           .day__link
+          nav.day__media
+            button.day__photos(type="button")
+              span.day__photos-count 5
+                span фото
 
         section.day
           .day__date
@@ -47,6 +63,8 @@ html(lang="ru")
               span день
           .day__weight 98 кг
           .day__link
+          nav.day__media
+            button.day__notes(type="button")
 
         section.day
           .day__date
@@ -54,6 +72,8 @@ html(lang="ru")
               span день
           .day__weight 99 кг
           .day__link
+          nav.day__media
+            button.day__notes(type="button")
 
         section.day
           .day__date
@@ -61,6 +81,11 @@ html(lang="ru")
               span день
           .day__weight 99 кг
           .day__link
+          nav.day__media
+            button.day__photos(type="button")
+              span.day__photos-count 5
+                span фото
+            button.day__notes(type="button")
 
         section.day
           .day__date
@@ -68,3 +93,11 @@ html(lang="ru")
               span день
           .day__weight 100 кг
           .day__link
+          nav.day__media
+            button.day__photos(type="button") 
+              span.day__photos-count 5
+                span фото
+            button.day__notes(type="button")
+
+    script(src="js/script.js", async, defer)
+

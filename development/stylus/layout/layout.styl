@@ -1,5 +1,8 @@
 @import '../service/**'
 
+*
+  pointer-events none
+
 html
   padding 0
   margin 0
@@ -14,10 +17,21 @@ html
     font-family 'Lobster', cursive
     background-color $color_blue
     color $color_blue 
+    pointer-events all
+    
+    // &:hover .page
+    //   transform translateX(90vw)
+    //   max-height 100vh
+      
   .page
+    max-width 100% 
     z-index 2
     position relative
-
+    overflow hidden
+    
+    transition transform .25s
+    transform translateX(0)
+      
     background-image url('../images/belly.png') 
     background-position  50% 50% 
     background-repeat no-repeat

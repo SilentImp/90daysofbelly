@@ -11,6 +11,18 @@
     position absolute
     left 50%
     top 25vh
+    height 80px
+    width 80px
+    margin -40px 0 0 -40px
+    line-height 80px
+    text-align center
+    
+    
+  &:nth-child(2n+2)
+    .day__media
+      .day__photos+.day__notes
+        left auto
+        right 110px 
     
   &__photos-count
     vertical-align middle
@@ -22,19 +34,21 @@
       display block
     
   &__photos
+    outline none
     text-align center
     text-decoration none
     color $color_white 
-    display block
-    line-height 80px
+    vertical-align middle
+    display inline-block
+    line-height 75px
     width 80px
     height 80px
-    margin -40px 0 0 -40px
+    margin 0
+    padding 0
+    overflow visible
     border-radius 100%
     background url("../images/photo_icon.png") 50% 50% no-repeat
     background-size cover
-    // background-size 100px
-    // transition background-size $transition-time
     transition transform $transition-time
     box-shadow 0 0 0 10px $color_white
     -ms-interpolation-mode nearest-neighbor
@@ -42,6 +56,49 @@
     image-rendering   -o-crisp-edges
     image-rendering -webkit-optimize-contrast
     image-rendering pixelated
+    pointer-events all
+    border-style none
+    font-family 'Lobster', cursive
+    cursor pointer
+    &:focus,
+    &:hover
+      transform scale(1.2)
+    & + .day__notes
+      position absolute
+      top 10px
+      left 110px 
+      
+  &__notes
+    outline none
+    
+    text-align center
+    text-decoration none
+    color $color_white 
+    
+    vertical-align middle
+    display inline-block
+    
+    line-height 55px
+    width 60px
+    height 60px
+    margin 0
+    padding 0
+    overflow visible
+    border-radius 100%
+    
+    background-position 50% 50%
+    background-repeat no-repeat
+    background-size 50px 50px
+    background-color $color_white 
+    background-image url("../svg/notes.svg") 
+    
+    transition transform $transition-time
+    pointer-events all
+    
+    border-style none
+    font-family 'Lobster', cursive
+    cursor pointer
+    &:focus,
     &:hover
       transform scale(1.2)
     
@@ -135,6 +192,27 @@
       top -20px
       right 50%
       left auto
+  
+  &:nth-child(2n+2):last-child,    
+  &:nth-child(2n+1):last-child
+    .day__media
+      top 60px
+      left 0
+      right 0
+      margin auto
+      width 80px
+      height auto
+      .day__photos
+        margin-top 10px
+        margin-bottom 30px
+      .day__notes
+        vertical-align top
+        position relative
+        left auto
+        right auto
+        top auto
+        bottom auto
+        margin 0
       
   &:nth-child(2n+2):last-child
     .day__weight
@@ -182,7 +260,7 @@
     
     height 80px
     width 80px 
-    line-height 80px
+    font-size 16px 
     
     text-align center
     line-height 80px

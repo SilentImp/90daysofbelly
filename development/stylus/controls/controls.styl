@@ -8,6 +8,7 @@
   display block
   font-size 0
   button
+    pointer-events all
     outline none
     width 80px
     height 80px
@@ -23,15 +24,19 @@
     &:before
       content "+"
       position absolute
+      
       bottom 0
-      right -2px
+      right 0
+      
       font-size 14px
       line-height 18px
       color $color_blue 
       background-color $color_white 
       width 20px 
       height 20px
-      border-radius 100%
+      padding 20px 0 0 20px 
+      border-radius 0 0 10px 0
+    &:focus,
     &:hover
       transform scale(1.2)
     &:after

@@ -1,0 +1,2 @@
+var BellyController;new(BellyController=function(){function l(){}return l}());
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkJlbGx5Q29udHJvbGxlci5qcyJdLCJuYW1lcyI6WyJCZWxseUNvbnRyb2xsZXIiXSwibWFwcGluZ3MiOiJBQUFBLEdBQUFBLGdCQVNBLEtBUEFBLGdCQUFBLFdBQ0EsUUFBQUEsTUFFQSxNQUFBQSIsImZpbGUiOiJzY3JpcHQuanMifQ==

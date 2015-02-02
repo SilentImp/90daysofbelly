@@ -1,16 +1,190 @@
-@require '../service/**'
+@import '../service/**'
 
 .day
   position relative
+  display block
   text-align center
-  &__dot
-    width 100px
-    height 100px
-    border-radius 100%
-    background-color $color_white  
+  height 50vh 
+  width 100%
+  
+  &__media
     position absolute
-    top -50px
+    left 50%
+    top 25vh
+    
+  &__photos-count
+    vertical-align middle
+    display inline-block
+    font-size 30px
+    line-height 20px
+    span
+      font-size 20px
+      display block
+    
+  &__photos
+    text-align center
+    text-decoration none
+    color $color_white 
+    display block
+    line-height 80px
+    width 80px
+    height 80px
+    margin -40px 0 0 -40px
+    border-radius 100%
+    background url("../images/photo_icon.png") 50% 50% no-repeat
+    background-size cover
+    // background-size 100px
+    // transition background-size $transition-time
+    box-shadow 0 0 0 10px $color_white
+    -ms-interpolation-mode nearest-neighbor
+    image-rendering -moz-crisp-edges
+    image-rendering   -o-crisp-edges
+    image-rendering -webkit-optimize-contrast
+    image-rendering pixelated
+    
+  
+  &__link:after
+    content "."
+    display block
+    
+    font-size 0
+    line-height 0
+    text-indent -999px
+    overflow hidden
+    
+    height 50vh
+    width 40px
+    background-color $color_white
+    z-index -1
+    
+    position absolute 
+    top 0
+    left 50%
+    
+    margin-left -20px
+    
+  &:last-child
+    height 40px
+    padding-bottom 50vh 
+    .day__link
+      display none
+            
+  &:nth-child(2n+1)
+    .day__link
+      width 50%
+      left 0
+      right 50%
+      top -20px
+      bottom -20px
+      overflow hidden
+      position absolute 
+      &:after
+        width calc(50vh - 40px)
+        height calc(50vh - 40px)
+        left 100%
+        margin 0 0 0 calc(-25vh - 40px)
+        border-radius 100%
+        background none
+        border 40px solid $color_white
+      
+  &:nth-child(2n+2)
+    .day__link
+      width 50%
+      left 50%
+      right 0
+      top -20px
+      bottom -20px
+      overflow hidden
+      position absolute
+      &:after
+        width calc(50vh - 40px)
+        height calc(50vh - 40px)
+        
+        right 100%
+        left auto
+        
+        position absolute
+        margin 0 calc(-25vh - 40px) 0 0
+        border-radius 100%
+        background none
+        border 40px solid $color_white
+      
+
+  &:nth-child(2n+1)
+    .day__weight
+      position absolute
+      right 50%
+      left auto
+      top 25vh 
+      
+      margin -40px calc(25vh - 20px) 0 0
+  
+  &:nth-child(2n+1):last-child
+    .day__weight
+      width auto
+      height 40px
+      width auto
+      padding 0 60px 0 20px
+      z-index -1
+      line-height 40px 
+      border-radius 20px 0 0 20px
+      margin 0
+      top -20px
+      right 50%
+      left auto
+      
+  &:nth-child(2n+2):last-child
+    .day__weight
+      width auto
+      height 40px
+      width auto
+      padding 0 20px 0 60px
+      z-index -1
+      line-height 40px 
+      border-radius 0 20px 20px 0
+      margin 0
+      top -20px
+      left 50%
+      right auto
+
+  &__date
+    width 80px
+    height 80px
+    border-radius 100%
+    background-color $color_white
+    position absolute
+    top -40px
     left 0
     right 0
-    margin auto
-     
+    margin auto 
+    line-height 80px
+    text-align center
+    font-size 0
+    time
+      font-size 30px
+      display inline-block
+      vertical-align middle
+      line-height 20px
+      span
+        font-size 20px
+        position relative
+        display block
+      
+  &__weight    
+    position absolute
+    left 50%
+    top 25vh 
+    
+    margin -40px 0 0 calc(25vh - 20px)
+    
+    height 80px
+    width 80px 
+    line-height 80px
+    
+    text-align center
+    line-height 80px
+    
+    background-color $color_white
+    border-radius 100%
+    color $color_blue
+    

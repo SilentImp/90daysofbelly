@@ -1,4 +1,4 @@
-@require '../service/**'
+@import '../service/**'
 
 html
   padding 0
@@ -13,10 +13,19 @@ html
     min-height 100% 
     font-family 'Lobster', cursive
     background-color $color_blue
+    color $color_blue 
+  .page
+    z-index 2
+    position relative
+
     background-image url('../images/belly.png') 
     background-position  50% 50% 
     background-repeat no-repeat
     background-attachment fixed
-    background-size cover
-    color $color_white 
+    background-size cover 
     
+    -ms-interpolation-mode nearest-neighbor
+    image-rendering -moz-crisp-edges
+    image-rendering   -o-crisp-edges
+    image-rendering -webkit-optimize-contrast
+    image-rendering pixelated

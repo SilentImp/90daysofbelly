@@ -11,6 +11,60 @@ html(lang="ru")
         h1.landing__title 90 дней
           br
           | живота
-      section.day
-        .day__dot
-        .weight 199.78 кг
+      nav.controls
+        button.photo(type="button", title="Добавить фотографию")
+        button.weight(type="button", title="Сколько вы сегодня весите?")
+        button.note(type="button", title="Оставить заметку")
+      section.days
+        section.day
+          .day__date
+            time(datetime="2014-02-08", title="8 февраля 2014 года") 7 
+              span день
+          .day__weight 97 кг
+          .day__link
+          nav.day__media
+            a.day__photos(href="#") 
+              span.day__photos-count 5
+                span фото
+
+        section.day
+          .day__date
+            time(datetime="2014-02-07", title="7 февраля 2014 года") 6
+              span день
+          .day__weight 97 кг
+          .day__link
+
+        section.day
+          .day__date
+            time(datetime="2014-02-06", title="6 февраля 2014 года") 5
+              span день
+          .day__weight 98 кг
+          .day__link
+
+        section.day
+          .day__date
+            time(datetime="2014-02-05", title="5 февраля 2014 года") 4
+              span день
+          .day__weight 98 кг
+          .day__link
+
+        section.day
+          .day__date
+            time(datetime="2014-02-04", title="4 февраля 2014 года") 3
+              span день
+          .day__weight 99 кг
+          .day__link
+
+        section.day
+          .day__date
+            time(datetime="2014-02-03", title="3 февраля 2014 года") 2
+              span день
+          .day__weight 99 кг
+          .day__link
+
+        section.day
+          .day__date
+            time(datetime="2014-02-02", title="2 февраля 2014 года") 1
+              span день
+          .day__weight 100 кг
+          .day__link

@@ -1,2 +1,2 @@
-var BellyController;new(BellyController=function(){function l(){}return l}());
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkJlbGx5Q29udHJvbGxlci5qcyJdLCJuYW1lcyI6WyJCZWxseUNvbnRyb2xsZXIiXSwibWFwcGluZ3MiOiJBQUFBLEdBQUFBLGdCQVNBLEtBUEFBLGdCQUFBLFdBQ0EsUUFBQUEsTUFFQSxNQUFBQSIsImZpbGUiOiJzY3JpcHQuanMifQ==
+!function(){var l=angular.module("BellyDays",[]);l.controller("DaysController",function(){console.log("lo lo lo")})}();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkRheXNDb250cm9sbGVyLmpzIl0sIm5hbWVzIjpbImFwcCIsImFuZ3VsYXIiLCJtb2R1bGUiLCJjb250cm9sbGVyIiwiY29uc29sZSIsImxvZyJdLCJtYXBwaW5ncyI6IkNBQUEsV0FFQSxHQUFBQSxHQUFBQyxRQUFBQyxPQUFBLGVBQ0FGLEdBQUFHLFdBQUEsaUJBQUEsV0FDQUMsUUFBQUMsSUFBQSIsImZpbGUiOiJzY3JpcHQuanMifQ==

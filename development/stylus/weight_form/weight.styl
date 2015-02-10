@@ -1,0 +1,103 @@
+@import '../service/**'
+
+.weight-form
+  position absolute
+  top 50vh
+  left 0
+  right 0
+  margin auto
+  z-index 100
+  width 80px
+  line-height 20vh
+  height 20vh
+  display none
+  opacity 0 
+  will-change opacity
+  transition opacity $transition-time
+  &.open 
+    opacity 1
+    display block
+    & ~ .page
+      height 100vh
+      overflow hidden
+      footer
+        display none
+  &:after
+    pointer-events all
+    content "."
+    display block
+    z-index -1
+    position fixed
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background rgba(0,0,0,.75) 
+    overflow hidden
+    text-indent -9999px
+  input,
+  button
+    margin -40px 0 0
+    padding 0
+    outline none
+    pointer-events all
+    position absolute
+    top 50%
+    width 80px
+    height 80px
+    border-radius 100%
+    background-color $color_white
+    border-style none
+    -webkit-appearance none
+    -moz-appearance none
+    appearance none
+    text-align center
+
+
+  input
+    font-family: 'Lobster',cursive;
+    left 0
+    font-size 16px
+    transition transform $transition-time
+    will-change transform
+    z-index 2 
+    color $color_blue
+    &:focus,
+    &:hover
+      transform scale(1.2)
+    
+  input:valid ~ button[type="submit"]
+    left 120px
+    transform scale(1) rotate(360deg)
+    &:focus,
+    &:hover
+      transform scale(1.2) rotate(360deg)
+    
+  button[type="submit"]
+    z-index 1
+    cursor pointer
+    left 0
+    transition transform $transition-time, left $transition-time
+    will-change transform, left
+    transform scale(1) rotate(0deg)
+    background-image url('../svg/ok.svg')
+    background-position 50% 50%
+    background-repeat no-repeat
+    background-size 40px 40px
+    
+  button[type="reset"]
+    z-index 1
+    cursor pointer
+    left -120px
+    transition transform $transition-time
+    will-change transform
+    transform scale(1)
+    background-image url('../svg/cancel.svg')
+    background-position 50% 50%
+    background-repeat no-repeat
+    background-size 30px 30px
+    &:focus,
+    &:hover
+      transform scale(1.2)
+    
+

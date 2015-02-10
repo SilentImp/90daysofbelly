@@ -17,30 +17,72 @@ html
     font-family 'Lobster', cursive
     background-color $color_blue
     color $color_blue 
-    pointer-events all
+    // pointer-events all
+    -ms-overflow-x hidden
+    overflow-x hidden
     
     // &:hover .page
     //   transform translateX(90vw)
     //   max-height 100vh
+    //   footer
+    //     display none
+    // &:hover .page__bg
+    //   transform translateX(90vw)
+    //   max-height 100vh
+
+    // & .page
+    //   transform translateX(50vw)
+    //   max-height 100vh
+    //   footer
+    //     display none
+    // & .page__bg
+    //   transform translateX(50vw)
+    //   max-height 100vh
       
   .page
     max-width 100% 
-    z-index 2
+    z-index 3
     position relative
     overflow hidden
     pointer-events all
     
-    transition transform .25s
+    transition transform .25s linear
     transform translateX(0)
-
-    background-image url('../images/belly.png')
-    background-position  50% 50%
-    background-repeat no-repeat
-    background-attachment fixed
-    background-size cover
+    will-change transform
     
-    -ms-interpolation-mode nearest-neighbor
-    image-rendering -moz-crisp-edges
-    image-rendering -o-crisp-edges
-    image-rendering -webkit-optimize-contrast
-    image-rendering pixelated
+    button
+      will-change transform
+      cursor pointer
+      z-index 4
+      pointer-events all
+      transition transform $transition-time
+      border-style none
+      outline none
+      &:focus,
+      &:hover
+        transform scale(1.2)
+  
+    &__bg
+      
+      transition transform .25s linear
+      transform translateX(0)
+      will-change transform
+      
+      position fixed
+      top 0
+      bottom 0
+      right 0
+      left 0
+      z-index 2
+
+      background-image url('../images/belly.png')
+      background-position  50% 50%
+      background-repeat no-repeat
+      background-attachment fixed
+      background-size cover
+      
+      -ms-interpolation-mode nearest-neighbor
+      image-rendering -moz-crisp-edges
+      image-rendering -o-crisp-edges
+      image-rendering -webkit-optimize-contrast
+      image-rendering pixelated

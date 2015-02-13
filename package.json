@@ -2,12 +2,13 @@
   "name": "90daysofbelly",
   "version": "0.0.0",
   "description": "90 days of my belly",
-  "main": "production/index.html",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
+    "branch": "server",
     "url": "git@github.com:SilentImp/90daysofbelly.git"
   },
   "author": "SilentImp <thesilentimp@gmail.com>",

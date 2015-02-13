@@ -25,18 +25,27 @@ BellyController = function() {
   mongoose.connect('mongodb://localhost/bellydays:27018');
 };
 
-BellyController.prototype.saveNote    = function(req, res) {};
+BellyController.prototype.saveNote    = function(req, res) {
+  res.send(res);
+};
 
-BellyController.prototype.getNote     = function(req, res) {};
+BellyController.prototype.getNote     = function(req, res) {
+  res.send(res);
+};
 
-BellyController.prototype.saveWeight  = function(req, res) {};
+BellyController.prototype.saveWeight  = function(req, res) {
+  res.send(res);
+};
 
-BellyController.prototype.getWeight   = function(req, res) {};
+BellyController.prototype.getWeight   = function(req, res) {
+  res.send(res);
+};
 
 BellyController.prototype.uploadFile  = function(req, res) {
     var file = req.files.file;
     console.log(file.name);
     console.log(file.type);
+    res.send(res);
 };
 
 module.exports = new BellyController();

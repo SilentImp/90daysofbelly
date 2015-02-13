@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/SilentImp/90daysofbelly",
   "dependencies": {
+    "bson": "^0.2.18",
+    "connect-multiparty": "~1.2.5",
     "express": "~4.11.2",
     "git-wrapper2": "~0.2.5",
     "gith": "~1.0.4",
-    "connect-multiparty": "~1.2.5",
     "mongoose": "~3.8.23"
   }
 }

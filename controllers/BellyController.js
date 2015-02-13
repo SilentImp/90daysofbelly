@@ -22,7 +22,7 @@ BellyController = function() {
           , text: String
         }]
       });
-  mongoose.connect('mongodb://localhost/bellydays:27017');
+  mongoose.connect('mongodb://localhost/bellydays:27018');
 };
 
 BellyController.prototype.saveNote    = function(req, res) {};

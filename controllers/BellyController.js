@@ -26,26 +26,26 @@ BellyController = function() {
 };
 
 BellyController.prototype.saveNote    = function(req, res) {
-  res.send(res);
+  res.send('save note');
 };
 
 BellyController.prototype.getNote     = function(req, res) {
-  res.send(res);
+  res.send('get note');
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
-  res.send(res);
+  res.send('save weight');
 };
 
 BellyController.prototype.getWeight   = function(req, res) {
-  res.send(res);
+  res.send('get weight');
 };
 
 BellyController.prototype.uploadFile  = function(req, res) {
-    var file = req.files.file;
-    console.log(file.name);
-    console.log(file.type);
-    res.send(res);
+  var file = req.files.file;
+  console.log(file.name);
+  console.log(file.type);
+  res.send('save photo');
 };
 
 module.exports = new BellyController();

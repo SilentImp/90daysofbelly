@@ -20,7 +20,7 @@ app.put('/photo/', multiparty(), BellyController.uploadFile);
 
 // Server
 app.listen(port);
-console.log('Magic happens on port ' + port);
+console.log('Magic happens on http://178.79.181.157:' + port);
 
 // Auto Deploy
 gith({

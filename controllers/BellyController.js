@@ -30,7 +30,7 @@ BellyController.prototype.saveNote    = function(req, res) {
 };
 
 BellyController.prototype.getNote     = function(req, res) {
-  res.send('get note');
+  res.send('get notes list');
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {

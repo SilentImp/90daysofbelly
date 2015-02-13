@@ -1,0 +1,32 @@
+var express           = require('express')
+    , app             = express()
+    , Git             = require('git-wrapper2')
+    , git             = new Git()
+    , gith            = require('gith').create(9001)
+    , port            = process.env.PORT || 8080
+    , multiparty      = require('connect-multiparty')
+    , BellyController = require('./controllers/BellyController.js');
+
+// Notes
+app.get('/note/', BellyController.getNote);
+app.post('/note/', BellyController.saveNote);
+
+// Weight
+app.get('/weight/',   BellyController.getWeight);
+app.post('/weight/',  BellyController.saveWeight);
+
+// Photo
+app.put('/photo/', multiparty(), BellyController.uploadFile);
+
+// Server
+app.listen(port);
+console.log('Magic happens on port ' + port);
+
+// Auto Deploy
+gith({
+  repo: 'SilentImp/90daysofbelly',
+  branch: /server/
+}).on( 'all', function( payload ) {
+  console.log( 'Post-receive happened!' );
+  git.pull('git@github.com:SilentImp/90daysofbelly.git', 'server');
+});

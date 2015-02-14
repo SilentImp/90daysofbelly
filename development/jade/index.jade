@@ -8,6 +8,7 @@ html(lang="ru", ng-app="BellyDays")
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic', rel='stylesheet', type='text/css')
     link(rel="stylesheet", href="css/styles.css")
 
+    script(src="js/jquery/dist/jquery.min.js")
     script(data-require="angular.js@*", data-semver="1.4.0-beta.4", src="https://code.angularjs.org/1.4.0-beta.4/angular.js")
     script(src="js/ng-file-upload/angular-file-upload-shim.min.js")
     script(src="js/ng-file-upload/angular-file-upload-all.min.js")
@@ -74,8 +75,8 @@ html(lang="ru", ng-app="BellyDays")
           accept=".jpg,.png",
           ng-model="files"
           )
-          span.photo__progress
-            span.photo__invert
+          span.upload__progress
+            span.upload__progress__invert
 
         button.weight(
           type="button", 

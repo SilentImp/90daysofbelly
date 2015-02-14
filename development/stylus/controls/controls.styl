@@ -7,34 +7,17 @@
   text-align center
   display block
   font-size 0
-  button
+  .upload__progress
+    position absolute
+    bottom 0
+    left 0
+    right 0
     overflow hidden
-    pointer-events all
-    outline none
-    width 80px
-    height 80px
-    display inline-block
-    vertical-align middle
-    border-style none
-    border-radius 100% 100% 20px 100%
-    background $color_white 
-    margin 0 20px
-    cursor pointer
-    position relative
-    transition transform $transition-time
-    will-change transform
-    
-    &__progress
-      position absolute
-      bottom 0
-      left 0
-      right 0
-      overflow hidden
-      
     &__invert
       width 80px
       height 80px
       background-color $color_blue
+      background-image url("../svg/photo-i.svg")
       border-radius 100% 100% 20px 100%
       position absolute
       bottom 0
@@ -56,7 +39,23 @@
         height 20px
         padding 20px 0 0 20px 
         border-radius 0 0 10px 0
-      
+  button
+    overflow hidden
+    pointer-events all
+    outline none
+    width 80px
+    height 80px
+    display inline-block
+    vertical-align middle
+    border-style none
+    border-radius 100% 100% 20px 100%
+    background $color_white 
+    margin 0 20px
+    cursor pointer
+    position relative
+    transition transform $transition-time
+    will-change transform
+        
     &:before
       content "+"
       position absolute
@@ -78,8 +77,6 @@
       background-image url("../svg/notes.svg") 
     &.photo
       background-image url("../svg/photo.svg")
-      .invert
-        background-image url("../svg/photo-i.svg")
     &.weight
       background-image url("../svg/weight.svg") 
 

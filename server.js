@@ -1,5 +1,6 @@
 var express           = require('express')
     , app             = express()
+    , hookshot        = require('hookshot')
     // , Git             = require('git-wrapper2')
     // , git             = new Git()
     // , gith            = require('gith').create(9001)

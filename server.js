@@ -24,8 +24,7 @@ console.log('Magic happens on http://178.79.181.157:' + port);
 
 // Auto Deploy
 gith({
-  repo: 'SilentImp/90daysofbelly',
-  branch: /server/
+  repo: 'SilentImp/90daysofbelly'
 }).on( 'all', function( payload ) {
   console.log( 'Post-receive happened!' );
   git.pull('git@github.com:SilentImp/90daysofbelly.git', 'server');

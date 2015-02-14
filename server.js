@@ -13,6 +13,8 @@ var express           = require('express')
 
 // Serving static
 app.use(express.static('public', options));
+
+// Adding headers, so we can upload files
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
   res.setHeader('Access-Control-Allow-Origin',  'http://silentimp.github.io');

@@ -1,18 +1,43 @@
 @import '../service/**'
 
+body.state-note-form 
+  .page
+    transform translateX(50vw)
+    max-height 100vh
+    .day__overlay
+      display block
+    footer
+      display none
+  .page__bg
+    transform translateX(50vw)
+    max-height 100vh
+    
+@media (max-width: 800px)
+
+  body.state-note-form 
+    .page
+      transform translateX(80vw)
+    .page__bg
+      transform translateX(80vw)
+  body
+    .note-form
+      right 20vw
+      width 80vw
+    
+
 .note-form
-  width 50vw
   height 100vh
+  width 50vw
   
-  position absolute
+  position fixed
   left 0
-  right 50vw
   top 0
-  bottom 0 
+  bottom 0
+  right 50vw
+  
   background-color $color_white
   z-index 1
   box-sizing border-box
-  // display none
   
   textarea
     pointer-events all

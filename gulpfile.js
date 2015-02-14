@@ -11,6 +11,7 @@ var gulp              = require('gulp')
     , csso            = require('gulp-csso')
     , autoprefixer    = require('gulp-autoprefixer')
     , deploy          = require('gulp-gh-pages')
+    , prettify        = require('gulp-jsbeautifier')
     , path            = {
       'development'     : {
         'stylus'        : 'development/stylus/**/*.styl'
@@ -59,7 +60,8 @@ gulp.task('js', ['coffee'], function () {
   return gulp.src(path.development.js)
           .pipe(sourcemaps.init())
           .pipe(concat('script.js'))
-          .pipe(uglify())
+          .pipe(prettify({indentSize: 4}))
+          // .pipe(uglify())
           .pipe(sourcemaps.write({includeContent: false}))
           .pipe(gulp.dest(path.production.js));
 });
@@ -79,6 +81,7 @@ gulp.task('stylus', function () {
 gulp.task('jade', function () {
   return gulp.src(path.development.jade)
           .pipe(jade())
+          .pipe(prettify({indentSize: 4}))
           .pipe(gulp.dest(path.production.root));
 });
 

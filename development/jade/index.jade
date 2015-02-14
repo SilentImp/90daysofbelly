@@ -8,21 +8,44 @@ html(lang="ru", ng-app="BellyDays")
     link(href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,cyrillic', rel='stylesheet', type='text/css')
     link(rel="stylesheet", href="css/styles.css")
 
-    script(src="js/angular/angular.min.js")
+    script(data-require="angular.js@*", data-semver="1.4.0-beta.4", src="https://code.angularjs.org/1.4.0-beta.4/angular.js")
+    script(src="js/ng-file-upload/angular-file-upload-shim.min.js")
+    script(src="js/ng-file-upload/angular-file-upload-all.min.js")
 
+  body(
+    class="state-{{page}}", 
+    ng-controller="AppController")
 
-  body(class="state-{{page}}")
     
     form.note-form(action="/note/", method="post", ng-controller="NoteFormController")
-      textarea(name="note", required="required", cols="30", rows="10", placeholder="Дорогой дневничек, это я, жиробас, и сегодня…")
+      textarea(name="note", autocomplete="off", required="required", cols="30", rows="10", placeholder="Дорогой дневничек, это я, жиробас, и сегодня…")
       button(type="submit")
 
-    form.weight-form(action="/weight/", method="post", ng-controller="WeightFormController")
-      input(type="text", autocomplete="off", minlength="2", maxlength="7", pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\\.)?$", name="weight" required="required", placeholder="65 кг.", value="")
-      button(type="submit")
-      button(type="reset")
+    form.weight-form(
+      name="WeightForm",
+      ng-submit="addWeight()",
+      method="post", 
+      ng-controller="WeightFormController")
+      input(
+        type="text", 
+        autocomplete="off", 
+        
+        ng-model="weight"
 
-    section.page__bg
+        minlength="2", 
+        maxlength="7", 
+        pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\\.)?$", 
+        
+        name="weight", 
+        required="required", 
+        placeholder="65 кг.", 
+        value="")
+      button(
+        type="submit",
+        ng-disabled='!WeightForm.$valid')
+      button(
+        type="reset", 
+        ng-click="show('list')")
 
     article.notes(ng-controller="NoteController")
       h2.notes__title 12 декабря, 67 день живота, вес: 97 киллограм
@@ -30,7 +53,13 @@ html(lang="ru", ng-app="BellyDays")
         p Я курю трубку и надеюсь что это поможет унять голод. 
         p Это казалось бы смешным но все более соблазнительными выглядят эти чудесные, волшебные, кактусы. Уверен, они обладают изысканным вкусом. Но я не могу позволить себе просто переступить через свои достижения. Я похудел на 200 грамм. И это, знаете ли, не мало.
 
-    section.page(ng-controller="DaysController")
+    section.page__bg
+    section.page(
+      drag-over-class="dragover",
+      ng-file-drop, 
+      accept=".jpg,.png",
+      ng-model="files"
+      )
       
       section.landing
         h1.landing__title 90 дней
@@ -38,9 +67,23 @@ html(lang="ru", ng-app="BellyDays")
           | живота
       
       nav.controls
-        button.photo(type="button", title="Добавьте фотографию")
-        button.weight(type="button", title="Сколько вы сегодня весите?", ng-click="show('weight-form')")
-        button.note(type="button", title="Оставьте заметку", ng-click="show('note-form')")
+        button.photo(
+          type="button", 
+          title="Добавьте фотографию",
+          ng-file-select,
+          accept=".jpg,.png",
+          ng-model="files"
+          )
+          span.photo__progress
+            span.photo__invert
+
+        button.weight(
+          type="button", 
+          title="Сколько вы сегодня весите?", 
+          ng-show = "isWeight()",
+          ng-click="openWeightForm()")
+
+        button.note(type="button", title="Оставьте заметку", ng-click="openNoteForm()")
       
       section.days
         
@@ -118,6 +161,6 @@ html(lang="ru", ng-app="BellyDays")
       footer.day__footer
         p.day__footer-copy © 2015 Немцев Антон
         button.day__scroll-top(type="button") 
-      .day__overlay
+      .day__overlay(ng-click="show('list')")
 
     script(src="js/script.js")

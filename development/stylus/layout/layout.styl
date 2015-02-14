@@ -16,29 +16,12 @@ html
     min-height 100% 
     font-family 'Lobster', cursive
     background-color $color_blue
-    color $color_blue 
-    // pointer-events all
+    color $color_blue
     -ms-overflow-x hidden
     overflow-x hidden
     
-    // &:hover .page
-    //   transform translateX(90vw)
-    //   max-height 100vh
-    //   footer
-    //     display none
-    // &:hover .page__bg
-    //   transform translateX(90vw)
-    //   max-height 100vh
-
-    // & .page
-    //   transform translateX(50vw)
-    //   max-height 100vh
-    //   footer
-    //     display none
-    // & .page__bg
-    //   transform translateX(50vw)
-    //   max-height 100vh
-      
+    scroll-behavior smooth
+    
   .page
     max-width 100% 
     z-index 3
@@ -49,6 +32,8 @@ html
     transition transform .25s linear
     transform translateX(0)
     will-change transform
+    
+    scroll-behavior smooth
     
     button
       will-change transform

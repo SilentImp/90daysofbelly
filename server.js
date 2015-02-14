@@ -8,13 +8,10 @@ var express           = require('express')
       dotfiles: 'ignore'
       , extensions: ['xml']
       , index: false
-      , setHeaders: function (res, path, stat) {
-        res.set('x-timestamp', Date.now())
-      }
     };
 
 
-app.use(express.static('public'), options);
+app.use(express.static('public'));
 
 // Origin
 // app.get('/crossdomain.xml', function(req, res){

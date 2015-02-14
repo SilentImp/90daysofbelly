@@ -46,7 +46,19 @@ BellyController.prototype.getWeight   = function(req, res) {
 };
 
 BellyController.prototype.uploadFile  = function(req, res) {
-  var file = req.files.file;
+  var file = req.files.file
+      , mongoose  = require('fs')
+      , source = fs.createReadStream(file.path)
+      , dest = fs.createWriteStream(__dirname + 'photos/' + file.name);
+
+  source.pipe(dest);
+  source.on('end', function() {
+    console.log('file saved');
+  });
+  source.on('error', function(err) {
+    console.log('file was not saved', err);
+  });
+
   console.log(file.name);
   console.log(file.type);
   console.dir(file);

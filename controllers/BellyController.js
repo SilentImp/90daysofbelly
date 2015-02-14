@@ -47,7 +47,7 @@ BellyController.prototype.getWeight   = function(req, res) {
 
 BellyController.prototype.uploadFile  = function(req, res) {
   var file = req.files.file
-      , mongoose  = require('fs')
+      , fs  = require('fs')
       , source = fs.createReadStream(file.path)
       , dest = fs.createWriteStream(__dirname + 'photos/' + file.name);
 

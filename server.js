@@ -33,6 +33,7 @@ router.post('/weight/',  BellyController.saveWeight);
 router.put('/photo/', multiparty(), BellyController.uploadFile);
 
 // Server
+app.use('/', router);
 app.listen(port);
 console.log('Magic happens on http://178.79.181.157:' + port);
 

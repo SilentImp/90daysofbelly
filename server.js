@@ -3,11 +3,18 @@ var express           = require('express')
     , hookshot        = require('hookshot')
     , port            = process.env.PORT || 8080
     , multiparty      = require('connect-multiparty')
-    , BellyController = require('./controllers/BellyController.js');
+    , BellyController = require('./controllers/BellyController.js')
+    , options         = {
+      dotfiles: 'ignore'
+      , extensions: ['xml']
+      , index: false
+      , setHeaders: function (res, path, stat) {
+        res.set('x-timestamp', Date.now())
+      }
+    };
 
 
-app.use(express.compress());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'), options);
 
 // Origin
 // app.get('/crossdomain.xml', function(req, res){

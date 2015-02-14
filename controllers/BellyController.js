@@ -49,7 +49,7 @@ BellyController.prototype.uploadFile  = function(req, res) {
   var file = req.files.file
       , fs  = require('fs')
       , source = fs.createReadStream(file.path)
-      , dest = fs.createWriteStream(__dirname + 'photos/' + file.name);
+      , dest = fs.createWriteStream(__dirname + '/../photos/' + file.name);
 
   source.pipe(dest);
   source.on('end', function() {

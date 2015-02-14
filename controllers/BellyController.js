@@ -47,7 +47,7 @@ BellyController.prototype.getWeight   = function(req, res) {
 
 BellyController.prototype.uploadFile  = function(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'http://silentimp.github.io');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   var file = req.files.file;

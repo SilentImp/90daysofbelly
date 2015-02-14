@@ -1,5 +1,6 @@
 var express           = require('express')
     , app             = express()
+    , router          = express.Router()
     , hookshot        = require('hookshot')
     , port            = process.env.PORT || 8080
     , multiparty      = require('connect-multiparty')
@@ -11,26 +12,25 @@ var express           = require('express')
     };
 
 
-app.use(express.static('public'));
-
-// Origin
-// app.get('/crossdomain.xml', function(req, res){
-//   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
-//   res.setHeader('Access-Control-Allow-Origin', 'http://silentimp.github.io');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//   res.send('crossdomain.xml');
-// });
+// Serving static
+router.use(express.static('public', options));
+router.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
+  res.setHeader('Access-Control-Allow-Origin',  'http://silentimp.github.io');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 // Notes
-app.get('/note/', BellyController.getNote);
-app.post('/note/', BellyController.saveNote);
+router.get('/note/', BellyController.getNote);
+router.post('/note/', BellyController.saveNote);
 
 // Weight
-app.get('/weight/',   BellyController.getWeight);
-app.post('/weight/',  BellyController.saveWeight);
+router.get('/weight/',   BellyController.getWeight);
+router.post('/weight/',  BellyController.saveWeight);
 
 // Photo
-app.put('/photo/', multiparty(), BellyController.uploadFile);
+router.put('/photo/', multiparty(), BellyController.uploadFile);
 
 // Server
 app.listen(port);

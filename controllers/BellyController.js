@@ -1,5 +1,16 @@
 BellyController = function() {
   mongoose  = require('mongoose');
+  
+  this.noteSchema = new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectId
+    , timestamp: {
+        type: Date
+        , default: Date.now
+        , index: true 
+      }
+      , text: String
+    });
+
   this.daySchema = new mongoose.Schema({
         id: mongoose.Schema.Types.ObjectId
         , timestamp: {
@@ -13,14 +24,7 @@ BellyController = function() {
           , max: 200 
         }
         , photos: Array
-        , notes: [{
-          timestamp: {
-            type: Date
-            , default: Date.now
-            , index: true 
-          }
-          , text: String
-        }]
+        , notes: [this.noteSchema]
       });
   mongoose.connect('mongodb://localhost/bellydays:27018');
 };

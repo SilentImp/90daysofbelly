@@ -36,7 +36,8 @@
             <h1 class="landing__title">90 дней<br/>живота</h1>
         </section>
         <nav class="controls">
-            <button type="button" title="Добавьте фотографию" ng-file-select="ng-file-select" accept=".jpg,.png" ng-model="files" class="photo"></button>
+            <button type="button" title="Добавьте фотографию" ng-file-select="ng-file-select" accept=".jpg,.png" ng-model="files" class="photo"><span class="photo__progress"><span class="photo__invert"></span></span>
+            </button>
             <button type="button" title="Сколько вы сегодня весите?" ng-show="isWeight()" ng-click="openWeightForm()" class="weight"></button>
             <button type="button" title="Оставьте заметку" ng-click="openNoteForm()" class="note"></button>
         </nav>

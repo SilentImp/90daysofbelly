@@ -5,6 +5,18 @@ var express           = require('express')
     , multiparty      = require('connect-multiparty')
     , BellyController = require('./controllers/BellyController.js');
 
+
+app.use(express.compress());
+app.use(express.static(__dirname + '/public'));
+
+// Origin
+// app.get('/crossdomain.xml', function(req, res){
+//   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
+//   res.setHeader('Access-Control-Allow-Origin', 'http://silentimp.github.io');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   res.send('crossdomain.xml');
+// });
+
 // Notes
 app.get('/note/', BellyController.getNote);
 app.post('/note/', BellyController.saveNote);

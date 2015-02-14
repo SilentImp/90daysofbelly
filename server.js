@@ -21,4 +21,4 @@ app.listen(port);
 console.log('Magic happens on http://178.79.181.157:' + port);
 
 // Auto deploy
-hookshot('refs/heads/server', 'git pull').listen(9001);
+hookshot('refs/heads/server', 'git pull && pm2 restart server.js').listen(9001);

@@ -20,5 +20,5 @@ app.put('/photo/', multiparty(), BellyController.uploadFile);
 app.listen(port);
 console.log('Magic happens on http://178.79.181.157:' + port);
 
-// Auto deploy
+// Auto efresh script and restart
 hookshot('refs/heads/server', 'git pull && pm2 restart server.js').listen(9001);

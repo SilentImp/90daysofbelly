@@ -24,7 +24,7 @@
                     file: file
                 }).progress(function(evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    $('.upload__progress__invert').css({
+                    $('.upload__progress').css({
                         height: progressPercentage + '%'
                     });
                     console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);

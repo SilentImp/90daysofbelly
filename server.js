@@ -23,7 +23,7 @@ app.put('/photo/', multiparty(), BellyController.uploadFile);
 app.listen(port);
 console.log('Magic happens on http://178.79.181.157:' + port);
 
-// Auto Deploy
+// Auto Deploy 2
 // gith({
 //   repo: 'SilentImp/90daysofbelly'
 // }).on( 'all', function( payload ) {

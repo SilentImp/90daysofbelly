@@ -8,17 +8,19 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/styles.css" />
     <script data-require="angular.js@*" data-semver="1.4.0-beta.4" src="https://code.angularjs.org/1.4.0-beta.4/angular.js"></script>
+    <script src="js/ng-file-upload/angular-file-upload-shim.min.js"></script>
+    <script src="js/ng-file-upload/angular-file-upload-all.min.js"></script>
 </head>
 
 <body ng-controller="AppController" class="state-{{page}}">
     <form action="/note/" method="post" ng-controller="NoteFormController" class="note-form">
-        <textarea name="note" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…"></textarea>
+        <textarea name="note" autocomplete="off" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…"></textarea>
         <button type="submit"></button>
     </form>
-    <form action="/weight/" method="post" ng-controller="WeightFormController" class="weight-form">
-        <input type="text" autocomplete="off" minlength="2" maxlength="7" pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\.)?$" name="weight" required="required" placeholder="65 кг." value="" />
-        <button type="submit"></button>
-        <button type="reset"></button>
+    <form name="WeightForm" ng-submit="addWeight()" method="post" ng-controller="WeightFormController" class="weight-form">
+        <input type="text" autocomplete="off" ng-model="weight" minlength="2" maxlength="7" pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\.)?$" name="weight" required="required" placeholder="65 кг." value="" />
+        <button type="submit" ng-disabled="!WeightForm.$valid"></button>
+        <button type="reset" ng-click="show('list')"></button>
     </form>
     <article ng-controller="NoteController" class="notes">
         <h2 class="notes__title">12 декабря, 67 день живота, вес: 97 киллограм</h2>
@@ -29,14 +31,14 @@
         </section>
     </article>
     <section class="page__bg"></section>
-    <section ng-controller="DaysController" class="page">
+    <section drag-over-class="dragover" ng-file-drop="ng-file-drop" accept=".jpg,.png" ng-model="files" class="page">
         <section class="landing">
             <h1 class="landing__title">90 дней<br/>живота</h1>
         </section>
         <nav class="controls">
-            <button type="button" title="Добавьте фотографию" class="photo"></button>
-            <button type="button" title="Сколько вы сегодня весите?" ng-click="show('weight-form')" class="weight"></button>
-            <button type="button" title="Оставьте заметку" ng-click="show('note-form')" class="note"></button>
+            <button type="button" title="Добавьте фотографию" ng-file-select="ng-file-select" accept=".jpg,.png" ng-model="files" class="photo"></button>
+            <button type="button" title="Сколько вы сегодня весите?" ng-show="isWeight()" ng-click="openWeightForm()" class="weight"></button>
+            <button type="button" title="Оставьте заметку" ng-click="openNoteForm()" class="note"></button>
         </nav>
         <section class="days">
             <section class="day">
@@ -125,7 +127,7 @@
             <p class="day__footer-copy">© 2015 Немцев Антон</p>
             <button type="button" class="day__scroll-top"> </button>
         </footer>
-        <div class="day__overlay"></div>
+        <div ng-click="show('list')" class="day__overlay"></div>
     </section>
     <script src="js/script.js"></script>
 </body>

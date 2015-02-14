@@ -23,6 +23,7 @@
     "express": "~4.11.2",
     "git-wrapper2": "~0.2.5",
     "gith": "~1.0.4",
-    "mongoose": "~3.8.23"
+    "mongoose": "~3.8.23",
+    "hookshot": "~0.1.0"
   }
 }

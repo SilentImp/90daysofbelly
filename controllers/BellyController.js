@@ -1,6 +1,6 @@
 BellyController = function() {
   this.mongoose  = require('mongoose');
-  this.noteSchema = new mongoose.Schema({
+  this.noteSchema = new this.mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId
     , timestamp: {
         type: Date
@@ -10,7 +10,7 @@ BellyController = function() {
       , text: String
     });
 
-  this.daySchema = new mongoose.Schema({
+  this.daySchema = new this.mongoose.Schema({
     id: this.mongoose.Schema.Types.ObjectId
     , timestamp: {
       type: Date

@@ -40,7 +40,7 @@ BellyController.prototype.getNote     = function(req, res) {
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
-  console.dir(req.body);
+  console.log('variable', req.body.weight);
 };
 
 BellyController.prototype.getWeight   = function(req, res) {

@@ -32,7 +32,9 @@ app.get('/note/', BellyController.getNote);
 app.post('/note/', BellyController.saveNote);
 
 // Weight
-app.get('/weight/',   BellyController.getWeight);
+app.get('/weight/', multiparty(), function(req, res){
+  console.dir(req);
+});
 app.post('/weight/',  BellyController.saveWeight);
 
 // Photo

@@ -26,6 +26,7 @@ BellyController = function() {
         , photos: Array
         , notes: [this.noteSchema]
       });
+
   mongoose.connect('mongodb://localhost/bellydays:27018');
 };
 
@@ -34,7 +35,9 @@ BellyController.prototype.saveNote    = function(req, res) {
 };
 
 BellyController.prototype.getNote     = function(req, res) {
-  res.send('get notes list refreshed');
+  mongoose.model('days').find(function(err, days){
+    res.send(days);
+  });
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {

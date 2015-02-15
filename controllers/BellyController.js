@@ -1,5 +1,5 @@
 BellyController = function() {
-  mongoose  = require('mongoose');
+  var mongoose  = require('mongoose');
   
   this.noteSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId
@@ -12,22 +12,23 @@ BellyController = function() {
     });
 
   this.daySchema = new mongoose.Schema({
-        id: mongoose.Schema.Types.ObjectId
-        , timestamp: {
-          type: Date
-          , default: Date.now
-          , index: true 
-        }
-        , weight: {
-          type: Number
-          , min: 40
-          , max: 200 
-        }
-        , photos: Array
-        , notes: [this.noteSchema]
-      });
-
+    id: mongoose.Schema.Types.ObjectId
+    , timestamp: {
+      type: Date
+      , default: Date.now
+      , index: true 
+    }
+    , weight: {
+      type: Number
+      , min: 40
+      , max: 200 
+    }
+    , photos: Array
+    , notes: [this.noteSchema]
+  });
+  this.day = mongoose.model('days', this.daySchema);
   mongoose.connect('mongodb://localhost/bellydays:27018');
+
 };
 
 BellyController.prototype.saveNote    = function(req, res) {
@@ -39,7 +40,10 @@ BellyController.prototype.getNote     = function(req, res) {
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
-  res.send('save weight');
+  console.dir(req);
+  // new this.day({
+  //   res.
+  // })
 };
 
 BellyController.prototype.getWeight   = function(req, res) {

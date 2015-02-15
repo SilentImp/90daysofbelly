@@ -31,7 +31,7 @@ BellyController = function() {
 };
 
 BellyController.prototype.getToday   = function() {
-  this.day.find().
+  // this.day.find().
 };
 
 BellyController.prototype.saveNote    = function(req, res) {

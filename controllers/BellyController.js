@@ -40,7 +40,7 @@ BellyController.prototype.getNote     = function(req, res) {
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
-  console.dir(req);
+  console.dir(req.body);
   // new this.day({
   //   res.
   // })

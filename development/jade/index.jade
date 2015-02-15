@@ -39,7 +39,7 @@ html(lang="ru", ng-app="BellyDays")
         
         name="weight", 
         required="required", 
-        placeholder="65 кг.", 
+        placeholder="65 кг.",
         value="")
       button(
         type="submit",
@@ -73,16 +73,19 @@ html(lang="ru", ng-app="BellyDays")
           title="Добавьте фотографию",
           ng-file-select,
           accept=".jpg,.png",
-          ng-model="files"
+          ng-model="files",
+          ng-disabled = "uploading"
           )
-          span.upload__progress
+          span.upload__progress(
+            style="height:{{progress}}%"
+            )
             span.upload__progress__invert
 
         button.weight(
           type="button", 
           title="Сколько вы сегодня весите?", 
           ng-show = "isWeight()",
-          ng-click="openWeightForm()")
+          ng-click= "openWeightForm()")
 
         button.note(type="button", title="Оставьте заметку", ng-click="openNoteForm()")
       

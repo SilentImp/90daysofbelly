@@ -12,6 +12,8 @@
     bottom 0
     left 0
     right 0
+    height 0
+    transition height .3s linear
     overflow hidden
     &__invert
       width 80px
@@ -55,7 +57,12 @@
     position relative
     transition transform $transition-time
     will-change transform
-        
+    &[disabled]
+      pointer-events none
+      transform scale(1)
+      &:focus,
+      &:hover
+        transform scale(1)
     &:before
       content "+"
       position absolute

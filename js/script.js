@@ -73,7 +73,7 @@
         // console.log('note-form', arguments);
     });
 
-    app.controller("WeightFormController", [$http, function($scope, $http) {
+    app.controller("WeightFormController", ['$scope', '$http', function($scope, $http) {
         $scope.addWeight = function() {
             $scope.$parent.weight = $scope.weight;
             document.querySelector('.weight-form').reset();

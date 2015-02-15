@@ -14,16 +14,14 @@ var express           = require('express')
 
 // Serving static
 app.use(express.static('public', options));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Adding headers, so we can upload files
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
   res.setHeader('Access-Control-Allow-Origin',  'http://silentimp.github.io');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  bodyParser.json();
-  bodyParser.urlencoded({
-    extended: true
-  });
   next();
 });
 
@@ -33,9 +31,7 @@ app.post('/note/', BellyController.saveNote);
 
 // Weight
 app.get('/weight/',  BellyController.getWeight);
-app.post('/weight/', multiparty(), function(req, res){
-  console.dir(req);
-});
+app.post('/weight/', BellyController.saveWeight);
 
 // Photo
 app.put('/photo/', multiparty(), BellyController.uploadFile);

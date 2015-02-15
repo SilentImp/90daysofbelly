@@ -35,9 +35,7 @@ BellyController.prototype.saveNote    = function(req, res) {
 };
 
 BellyController.prototype.getNote     = function(req, res) {
-  mongoose.model('days').find(function(err, days){
-    res.send(days);
-  });
+
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
@@ -45,7 +43,9 @@ BellyController.prototype.saveWeight  = function(req, res) {
 };
 
 BellyController.prototype.getWeight   = function(req, res) {
-  res.send('get weight');
+  mongoose.model('days').find(function(err, days){
+    res.send(days);
+  });
 };
 
 BellyController.prototype.uploadFile  = function(req, res) {

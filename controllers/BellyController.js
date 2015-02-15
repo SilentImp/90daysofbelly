@@ -1,7 +1,7 @@
 BellyController = function() {
   this.mongoose  = require('mongoose');
   this.noteSchema = new this.mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId
+    id: this.mongoose.Schema.Types.ObjectId
     , timestamp: {
         type: Date
         , default: Date.now

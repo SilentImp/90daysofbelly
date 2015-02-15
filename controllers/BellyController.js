@@ -1,6 +1,5 @@
 BellyController = function() {
-  var mongoose  = require('mongoose');
-  
+  this.mongoose  = require('mongoose');
   this.noteSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId
     , timestamp: {
@@ -12,7 +11,7 @@ BellyController = function() {
     });
 
   this.daySchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId
+    id: this.mongoose.Schema.Types.ObjectId
     , timestamp: {
       type: Date
       , default: Date.now
@@ -26,9 +25,13 @@ BellyController = function() {
     , photos: Array
     , notes: [this.noteSchema]
   });
-  this.day = mongoose.model('days', this.daySchema);
-  mongoose.connect('mongodb://localhost/bellydays:27018');
+  this.day = this.mongoose.model('days', this.daySchema);
+  this.mongoose.connect('mongodb://localhost/bellydays:27018');
 
+};
+
+BellyController.prototype.getToday   = function() {
+  this.day.find().
 };
 
 BellyController.prototype.saveNote    = function(req, res) {
@@ -40,11 +43,18 @@ BellyController.prototype.getNote     = function(req, res) {
 };
 
 BellyController.prototype.saveWeight  = function(req, res) {
-  console.dir(req);
+  if(
+    (typeof req.body == "undefined")
+    || (typeof req.body.weight == "undefined")
+  ){
+    throw new Error("Weight variable undefiend.");
+  }
+
+
 };
 
 BellyController.prototype.getWeight   = function(req, res) {
-  mongoose.model('days').find(function(err, days){
+  this.mongoose.model('days').find(function(err, days){
     res.send(days);
   });
 };

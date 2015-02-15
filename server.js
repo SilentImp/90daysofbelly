@@ -4,6 +4,7 @@ var express           = require('express')
     , port            = process.env.PORT || 8080
     , multiparty      = require('connect-multiparty')
     , BellyController = require('./controllers/BellyController.js')
+    , bodyParser      = require('body-parser')
     , options         = {
       dotfiles: 'ignore'
       , extensions: ['xml']
@@ -19,6 +20,8 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'POST, PUT, OPTIONS');
   res.setHeader('Access-Control-Allow-Origin',  'http://silentimp.github.io');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  express.json();
+  express.urlencoded();
   next();
 });
 

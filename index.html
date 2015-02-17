@@ -14,11 +14,11 @@
 </head>
 
 <body ng-controller="AppController" class="state-{{page}}">
-    <form method="post" ng-submit="addNote()" ng-controller="NoteFormController" class="note-form">
-        <textarea name="note" autocomplete="off" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…" ng-model="note"></textarea>
-        <button type="submit"></button>
+    <form name="NoteForm" ng-submit="addNote()" ng-controller="NoteFormController" class="note-form">
+        <textarea name="note" autocomplete="off" required="required" minlength="3" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…" ng-model="note"></textarea>
+        <button type="submit" ng-disabled="!NoteForm.$valid"></button>
     </form>
-    <form name="WeightForm" ng-submit="addWeight()" method="post" ng-controller="WeightFormController" class="weight-form">
+    <form name="WeightForm" ng-submit="addWeight()" ng-controller="WeightFormController" class="weight-form">
         <input type="text" autocomplete="off" ng-model="weight" minlength="2" maxlength="7" pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\.)?$" name="weight" required="required" placeholder="65 кг." value="" />
         <button type="submit" ng-disabled="!WeightForm.$valid"></button>
         <button type="reset" ng-click="show('list')"></button>

@@ -19,30 +19,32 @@ html(lang="ru", ng-app="BellyDays")
 
     
     form.note-form(
-      method="post", 
+      name="NoteForm",
       ng-submit="addNote()",
       ng-controller="NoteFormController")
       textarea(
         name="note", 
         autocomplete="off", 
-        required="required", 
+        required="required",
+        minlength="3", 
         cols="30", 
         rows="10", 
         placeholder="Дорогой дневничек, это я, жиробас, и сегодня…",
         ng-model="note"
         )
-      button(type="submit")
+      button(
+        type="submit"
+        ng-disabled='!NoteForm.$valid')
 
     form.weight-form(
       name="WeightForm",
       ng-submit="addWeight()",
-      method="post", 
       ng-controller="WeightFormController")
       input(
         type="text", 
         autocomplete="off", 
         ng-model="weight"
-        minlength="2", 
+        minlength="2",
         maxlength="7", 
         pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\\.)?$", 
         name="weight", 

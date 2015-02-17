@@ -2,12 +2,18 @@
 
   var app = angular.module("BellyDays",['angularFileUpload']);
 
-  app.controller("AppController", ['$scope', '$upload', function($scope, $upload){
+  app.controller("AppController", ['$scope', '$upload', '$http', function($scope, $upload, $http){
     
     $scope.page = 'list';
     $scope.weight = null;
     $scope.uploading = false;
     $scope.progress = 0;
+
+    $http.get('http://178.79.181.157:8080/day/').success(function(data, status, headers, config){
+      console.dir(data);
+      console.log(status, headers, config);
+      $scope.days = data;
+    });
 
     $scope.$watch('files', function () {
       $scope.upload($scope.files);
@@ -61,19 +67,21 @@
 
   }]);
 
-  app.controller("NoteFormController", ['$scope', '$http', function($scope){
+  app.controller("NoteFormController", ['$scope', '$http', function($scope, $http){
     $scope.note = "";
     $scope.addNote = function(){
       $http.post('http://178.79.181.157:8080/note/', {"note": $scope.note});
+      $scope.show('list');
+      document.querySelector('.note-form').reset();
     };
   }]);
 
   app.controller("WeightFormController", ['$scope', '$http', function($scope, $http){
     $scope.addWeight = function(){
       $scope.$parent.weight = $scope.weight;
-      document.querySelector('.weight-form').reset();
+      $http.post('http://178.79.181.157:8080/day/', {"weight": $scope.$parent.weight});
       $scope.show('list');
-      $http.post('http://178.79.181.157:8080/weight/', {weight: $scope.$parent.weight});
+      document.querySelector('.weight-form').reset();
     };
   }]);
 

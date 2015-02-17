@@ -15,7 +15,7 @@
 
 <body ng-controller="AppController" class="state-{{page}}">
     <form action="/note/" method="post" ng-controller="NoteFormController" class="note-form">
-        <textarea name="note" autocomplete="off" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…"></textarea>
+        <textarea name="note" autocomplete="off" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…" ng-model="note"></textarea>
         <button type="submit"></button>
     </form>
     <form name="WeightForm" ng-submit="addWeight()" method="post" ng-controller="WeightFormController" class="weight-form">
@@ -23,7 +23,7 @@
         <button type="submit" ng-disabled="!WeightForm.$valid"></button>
         <button type="reset" ng-click="show('list')"></button>
     </form>
-    <article ng-controller="NoteController" class="notes">
+    <article class="notes">
         <h2 class="notes__title">12 декабря, 67 день живота, вес: 97 киллограм</h2>
         <section class="notes__note">
             <p>Я курю трубку и надеюсь что это поможет унять голод. </p>

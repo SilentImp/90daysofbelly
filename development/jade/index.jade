@@ -18,8 +18,19 @@ html(lang="ru", ng-app="BellyDays")
     ng-controller="AppController")
 
     
-    form.note-form(action="/note/", method="post", ng-controller="NoteFormController")
-      textarea(name="note", autocomplete="off", required="required", cols="30", rows="10", placeholder="Дорогой дневничек, это я, жиробас, и сегодня…")
+    form.note-form(
+      method="post", 
+      ng-submit="addNote()",
+      ng-controller="NoteFormController")
+      textarea(
+        name="note", 
+        autocomplete="off", 
+        required="required", 
+        cols="30", 
+        rows="10", 
+        placeholder="Дорогой дневничек, это я, жиробас, и сегодня…",
+        ng-model="note"
+        )
       button(type="submit")
 
     form.weight-form(
@@ -30,13 +41,10 @@ html(lang="ru", ng-app="BellyDays")
       input(
         type="text", 
         autocomplete="off", 
-        
         ng-model="weight"
-
         minlength="2", 
         maxlength="7", 
         pattern="^[1-9][0-9]{1,2}(?: )?(?:кг)?(?:\\.)?$", 
-        
         name="weight", 
         required="required", 
         placeholder="65 кг.",
@@ -48,7 +56,7 @@ html(lang="ru", ng-app="BellyDays")
         type="reset", 
         ng-click="show('list')")
 
-    article.notes(ng-controller="NoteController")
+    article.notes
       h2.notes__title 12 декабря, 67 день живота, вес: 97 киллограм
       section.notes__note
         p Я курю трубку и надеюсь что это поможет унять голод. 
@@ -164,7 +172,8 @@ html(lang="ru", ng-app="BellyDays")
             button.day__notes(type="button")
       footer.day__footer
         p.day__footer-copy © 2015 Немцев Антон
-        button.day__scroll-top(type="button") 
+        p.day__made-in-ukraine Сделано в Украине
+        button.day__scroll-top(type="button")
       .day__overlay(ng-click="show('list')")
 
     script(src="js/script.js")

@@ -23,12 +23,16 @@
           file: files[0]
         }).progress(function (evt) {
           $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-        }).success(function (data, status, headers, config) {
-          $scope.progress = 0;
-          $scope.uploading = false;
-        });
+        })
+        .success(uploadEnd)
+        .error(uploadEnd);
       }
     };
+
+    function uploadEnd () {
+      $scope.progress = 0;
+      $scope.uploading = false;
+    }
 
     $scope.isWeight = function(){
       return $scope.weight === null;
@@ -55,25 +59,22 @@
       document.querySelector('.note-form textarea').focus();
     };
 
-    // console.log('app', arguments);
-
   }]);
 
-  app.controller("NoteController", function($scope){
-    // console.log('note', arguments);
-  });
+  app.controller("NoteFormController", ['$scope', '$http', function($scope){
+    $scope.note = "";
+    $scope.addNote = function(){
+      $http.post('http://178.79.181.157:8080/note/', {"note": $scope.note});
+    };
+  }]);
 
-  app.controller("NoteFormController", function($scope){
-    // console.log('note-form', arguments);
-  });
-
-  app.controller("WeightFormController", function($scope){
+  app.controller("WeightFormController", ['$scope', '$http', function($scope, $http){
     $scope.addWeight = function(){
       $scope.$parent.weight = $scope.weight;
       document.querySelector('.weight-form').reset();
       $scope.show('list');
+      $http.post('http://178.79.181.157:8080/weight/', {weight: $scope.$parent.weight});
     };
-    // console.log('weight-form', arguments);
-  });
+  }]);
 
 })();

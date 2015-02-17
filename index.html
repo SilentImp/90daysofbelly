@@ -14,7 +14,7 @@
 </head>
 
 <body ng-controller="AppController" class="state-{{page}}">
-    <form action="/note/" method="post" ng-controller="NoteFormController" class="note-form">
+    <form method="post" ng-submit="addNote()" ng-controller="NoteFormController" class="note-form">
         <textarea name="note" autocomplete="off" required="required" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…" ng-model="note"></textarea>
         <button type="submit"></button>
     </form>

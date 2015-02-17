@@ -2,7 +2,7 @@
 
     var app = angular.module("BellyDays", ['angularFileUpload']);
 
-    app.controller("AppController", ['$scope', '$upload', function($scope, $upload) {
+    app.controller("AppController", ['$scope', '$upload', '$http', function($scope, $upload, $http) {
 
         $scope.page = 'list';
         $scope.weight = null;

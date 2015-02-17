@@ -23,20 +23,27 @@ app.use(express.static('public', options))
       next();
     });
 
-// Notes
-app.get('/note/', BellyController.getNote);
-app.post('/note/', BellyController.saveNote);
 
-// Weight
-app.get('/weight/',  BellyController.getWeight);
-app.post('/weight/', BellyController.saveWeight);
+// Get days list
+app.get('/day/', BellyController.getDays);
 
-// Photo
+// Save weight
+app.post('/day/', BellyController.saveWeight);
+
+// Add photo
 app.put('/photo/', multiparty(), BellyController.uploadFile);
+
+// Get notes list
+app.get('/note/:id/', BellyController.getNotes);
+
+// Add note
+app.post('/note/', BellyController.addNote);
 
 // Server
 app.listen(port);
-console.log('Magic happens on http://178.79.181.157:' + port);
+console.log('Server started on http://178.79.181.157:' + port+'/');
 
 // Auto efresh script and restart
 hookshot('refs/heads/server', 'git pull && pm2 restart server.js').listen(9001);
+
+

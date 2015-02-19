@@ -8,6 +8,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="js/moment/min/moment-with-locales.min.js"></script>
     <script data-require="angular.js@*" data-semver="1.4.0-beta.4" src="https://code.angularjs.org/1.4.0-beta.4/angular.js"></script>
     <script src="js/ng-file-upload/angular-file-upload-shim.min.js"></script>
     <script src="js/ng-file-upload/angular-file-upload-all.min.js"></script>
@@ -43,85 +44,17 @@
             <button type="button" title="Оставьте заметку" ng-click="openNoteForm()" class="note"></button>
         </nav>
         <section class="days">
-            <section class="day">
+            <section ng-repeat="day in days" data-id="{{day._id}}" class="day">
                 <div class="day__date">
-                    <time datetime="2014-02-08" title="8 февраля 2014 года">7 <span>день</span>
+                    <time datetime="{{day._id}}" title="">7 <span>день</span>
                     </time>
                 </div>
-                <div class="day__weight">97 кг</div>
+                <div class="day__weight">{{day.weight}} кг</div>
                 <div class="day__link"></div>
                 <nav class="day__media">
-                    <button type="button" class="day__photos"><span class="day__photos-count">2<span>фото</span></span>
+                    <button type="button" ng-show="day.photos.length &gt; 0" class="day__photos"><span ng-show="{{day.weight.length &gt; 1}}" class="day__photos-count">{{day.weight.length}}<span>фото</span></span>
                     </button>
-                    <button type="button" class="day__notes"></button>
-                </nav>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-07" title="7 февраля 2014 года">6<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">97 кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" class="day__photos"><span class="day__photos-count">15<span>фото</span></span>
-                    </button>
-                </nav>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-06" title="6 февраля 2014 года">5<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">98 кг</div>
-                <div class="day__link"></div>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-05" title="5 февраля 2014 года">4<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">98 кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" class="day__notes"></button>
-                </nav>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-04" title="4 февраля 2014 года">3<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">99 кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" class="day__notes"></button>
-                </nav>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-03" title="3 февраля 2014 года">2<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">99 кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" class="day__photos"><span class="day__photos-count"> <span>фото</span></span>
-                    </button>
-                    <button type="button" class="day__notes"></button>
-                </nav>
-            </section>
-            <section class="day">
-                <div class="day__date">
-                    <time datetime="2014-02-02" title="2 февраля 2014 года">1<span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">100 кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" class="day__photos"> <span class="day__photos-count">5<span>фото</span></span>
-                    </button>
-                    <button type="button" class="day__notes"></button>
+                    <button type="button" ng-click="showNotes()" class="day__notes"></button>
                 </nav>
             </section>
         </section>

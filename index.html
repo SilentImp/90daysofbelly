@@ -3,19 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>90 Дней Живота</title>
     <link href="http://fonts.googleapis.com/css?family=Lobster&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="js/c3js-chart/c3.min.css" />
+    <script src="js/d3/d3.min.js"></script>
+    <script src="js/c3js-chart/c3.min.js"></script>
     <script src="js/moment/min/moment-with-locales.min.js"></script>
     <script data-require="angular.js@*" data-semver="1.4.0-beta.4" src="https://code.angularjs.org/1.4.0-beta.4/angular.js"></script>
     <script src="js/ng-file-upload/angular-file-upload-shim.min.js"></script>
     <script src="js/ng-file-upload/angular-file-upload-all.min.js"></script>
 </head>
 
-<body ng-controller="AppController" class="state-{{page}}">
-    <form name="NoteForm" ng-submit="addNote()" ng-controller="NoteFormController" class="note-form">
+<body ng-controller="AppController" drag-over-class="dragover" ng-file-drop="ng-file-drop" accept=".jpg,.png" ng-model="files" class="state-{{page}}">
+    <form name="NoteForm" novalidate="novalidate" ng-submit="addNote()" ng-controller="NoteFormController" class="note-form">
         <textarea name="note" autocomplete="off" required="required" minlength="3" cols="30" rows="10" placeholder="Дорогой дневничек, это я, жиробас, и сегодня…" ng-model="note"></textarea>
         <button type="submit" ng-disabled="!NoteForm.$valid"></button>
     </form>
@@ -24,46 +27,71 @@
         <button type="submit" ng-disabled="!WeightForm.$valid"></button>
         <button type="reset" ng-click="show('list')"></button>
     </form>
+    <figure class="graph">
+        <div class="graph__chart"></div>
+        <button type="button" ng-click="show('list')" class="graph__close"></button>
+    </figure>
+    <article class="photos">
+        <div ng-show="photos.length&gt;1" class="photos__counter">{{photos_index+1}} из {{photos.length}}</div>
+        <div style="left: -{{photos_index*100}}%;" class="photos__wrapper">
+            <section ng-repeat="photo in photos | orderBy:'_id':true" data-photo="{{photo}}" class="photos__screen"><img ng-src="{{photo_url}}{{day_time}}/{{photo.url}}" alt="Фотография" class="photos__photo" />
+                <div class="photos__spinner"></div>
+            </section>
+        </div>
+        <nav class="photos__navigation">
+            <button type="button" ng-click="prevPhoto()" ng-hide="firstPhoto()" class="photos__prev"></button>
+            <button type="button" ng-click="nextPhoto()" ng-hide="lastPhoto()" class="photos__next"></button>
+            <button type="button" ng-click="closePhoto()" class="photos__close"></button>
+        </nav>
+    </article>
     <article class="notes">
-        <h2 class="notes__title">12 декабря, 67 день живота, вес: 97 киллограм</h2>
-        <section class="notes__note">
-            <p>Я курю трубку и надеюсь что это поможет унять голод. </p>
-            <p>Это казалось бы смешным но все более соблазнительными выглядят эти чудесные, волшебные, кактусы. Уверен, они обладают изысканным вкусом. Но я не могу позволить себе просто переступить через свои достижения. Я похудел на 200 грамм. И это, знаете
-                ли, не мало.</p>
+        <section ng-repeat="note in notes | orderBy:'timestamp':true">
+            <h2 data-time="{{note.timestamp}}" data-first="{{$first}}" class="notes__title"></h2>
+            <section class="notes__note">{{note.text}}</section>
         </section>
     </article>
     <section class="page__bg"></section>
-    <section drag-over-class="dragover" ng-file-drop="ng-file-drop" accept=".jpg,.png" ng-model="files" class="page">
-        <section class="landing">
-            <h1 class="landing__title">90 дней<br/>живота</h1>
-        </section>
-        <nav class="controls">
-            <button type="button" title="Добавьте фотографию" ng-file-select="ng-file-select" accept=".jpg,.png" ng-model="files" ng-disabled="uploading" class="photo"><span style="height:{{progress}}%" class="upload__progress"><span class="upload__progress__invert"></span></span>
-            </button>
-            <button type="button" title="Сколько вы сегодня весите?" ng-show="isWeight()" ng-click="openWeightForm()" class="weight"></button>
-            <button type="button" title="Оставьте заметку" ng-click="openNoteForm()" class="note"></button>
-        </nav>
-        <section class="days">
-            <section ng-repeat="day in days" data-id="{{day._id}}" class="day">
-                <div class="day__date">
-                    <time datetime="{{day._id}}" title="">7 <span>день</span>
-                    </time>
-                </div>
-                <div class="day__weight">{{day.weight}} кг</div>
-                <div class="day__link"></div>
-                <nav class="day__media">
-                    <button type="button" ng-show="day.photos.length &gt; 0" class="day__photos"><span ng-show="{{day.weight.length &gt; 1}}" class="day__photos-count">{{day.weight.length}}<span>фото</span></span>
-                    </button>
-                    <button type="button" ng-click="showNotes()" class="day__notes"></button>
-                </nav>
+    <section class="page">
+        <div style="margin-top: -{{scroll_top}}px" class="page__wrapper">
+            <section class="landing">
+                <h1 class="landing__title">90 дней<br/>живота</h1>
             </section>
-        </section>
-        <footer class="day__footer">
-            <p class="day__footer-copy">© 2015 Немцев Антон</p>
-            <p class="day__made-in-ukraine">Сделано в Украине</p>
-            <button type="button" class="day__scroll-top"></button>
-        </footer>
-        <div ng-click="show('list')" class="day__overlay"></div>
+            <nav class="auth">
+                <a data-ng-show="!isAuth()" data-ng-click="login()" title="Авторизация" class="auth__twitter"> </a>
+                <a data-ng-click="login()" data-ng-show="isAuth()" title="Выйти из учетной записи" class="auth__logout"></a>
+                <button type="button" title="Показать процесс похудения в виде графика" ng-click="show('graph')" class="show-graph"></button>
+            </nav>
+            <nav data-ng-show="isAuth()" class="controls">
+                <button type="button" title="Добавьте фотографию" ng-file-select="ng-file-select" accept=".jpg,.png" ng-model="files" ng-disabled="uploading" class="photo"><span ng-model="progress" style="height:{{progress}}%" class="upload__progress"><span class="upload__progress__invert"></span></span>
+                </button>
+                <button type="button" title="Сколько вы сегодня весите?" ng-show="isWeight()" ng-click="openWeightForm()" class="weight"></button>
+                <button type="button" title="Оставьте заметку" ng-click="openNoteForm()" class="note"></button>
+                <button type="button" title="Сколько вы прошли сегодня?" ng-click="FitItBit()" class="fitbit"></button>
+            </nav>
+            <section class="days">
+                <section ng-repeat="day in days | orderBy:'_id':true" data-id="{{day._id}}" class="day">
+                    <div data-time="{{day._id}}" class="day__date"></div>
+                    <div ng-show="day.weight" class="day__weight">{{day.weight}} кг</div>
+                    <div class="day__link"></div>
+                    <nav class="day__media">
+                        <button type="button" ng-show="day.photos.length &gt; 0" ng-click="openPhotos(day._id)" class="day__photos"><span ng-show="day.photos.length &gt; 1" class="day__photos-count">{{day.photos.length}}<span>фото</span></span>
+                        </button>
+                        <button type="button" ng-show="day.notes.length &gt; 0" ng-click="openNotes(day._id)" class="day__notes"></button>
+                    </nav>
+                </section>
+            </section>
+            <footer class="day__footer">
+                <div class="day__copy">
+                    <p class="day__footer-copy">© 2015 Немцев Антон</p>
+                    <p class="day__icons">Использованы иконки, созданные Siddharth Dasari, Chance Smith, Nithin Davis Nanthikkara, Justin Galicz, Casper Jensen, Stefan Parnarov, Milky, Tim Holman, Anand A Nair, Pedro Lalli, Mike Rowe и распространяемые по лиценции <a href="http://creativecommons.org/licenses/by/3.0/us/"
+                        class="day__cc">Creative Commons – Attribution (CC BY 3.0)</a>
+                    </p>
+                </div>
+                <p class="day__made-in-ukraine">Сделано в Украине</p>
+                <button type="button" ng-click="scrollTop()" class="day__scroll-top"></button>
+            </footer>
+            <div ng-click="show('list')" class="day__overlay"></div>
+        </div>
     </section>
     <script src="js/script.js"></script>
 </body>

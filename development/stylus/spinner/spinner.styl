@@ -1,0 +1,30 @@
+$throbber-lite-side = rgba(255, 255, 255, 1)
+$throbber-dark-side = rgba(255, 255, 255, .1)
+$space_size = 100px
+$width = 2px
+$size = $space_size + $width*2 
+
+.photos__spinner
+  width $size
+  height $size
+  &:after
+    display block
+    position relative
+    width $space_size
+    height $space_size
+    animation rotate .6s linear infinite
+    border-radius 100%
+    border-top $width solid $throbber-dark-side
+    border-bottom $width solid $throbber-lite-side
+    border-left $width solid $throbber-dark-side
+    border-right $width solid $throbber-lite-side
+    content ''
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

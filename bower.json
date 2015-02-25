@@ -10,6 +10,8 @@
   "dependencies": {
     "angular": "~1.3.11",
     "ng-file-upload": "~3.0.3",
-    "jquery": "~2.1.3"
+    "moment": "~2.9.0",
+    "d3": "~3.5.5",
+    "c3js-chart": "~0.4.9"
   }
 }

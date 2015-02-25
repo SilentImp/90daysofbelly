@@ -1,0 +1,134 @@
+@import '../service/**'
+
+body.state-photos
+  .photos
+    opacity 1
+    z-index 2000
+    &__prev,
+    &__next
+      z-index 2001
+    &__close
+      z-index 2002
+    & ~ .page
+      height 100vh
+      overflow hidden
+      .day__overlay
+        display block
+        opacity 1
+        
+.photos
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  opacity 0
+  z-index -3
+  width 100vw
+  height 100vh 
+  font-size 0
+  line-height 0
+  background-color rgba(0,0,0,.75)
+  transition opacity $transition-time, z-index $transition-time 0
+  &__spinner
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+    position absolute
+    z-index 2
+    opacity 1
+    transition opacity $transition-time linear
+  &__wrapper
+    position relative
+    left 0
+    white-space nowrap
+    transition left $transition-time linear
+    will-change left
+  &__photo
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    z-index 1
+    margin auto
+    max-width 80%
+    max-height 80%
+    pointer-events all
+    opacity 0
+    transition opacity $transition-time linear
+    &.loaded 
+      opacity 1
+      & + .photos__spinner
+        opacity 0
+  &__screen
+    width 100vw
+    height 100vh
+    display inline-block
+    vertical-align top
+    position relative
+  &__counter
+    position absolute
+    top 0
+    left 0
+    right 0
+    text-align center
+    color $color_white
+    font-size 24px
+    line-height 10vh
+    z-index 1 
+  &__close
+    outline none
+    position fixed
+    pointer-events all
+    border-style none
+    margin 0
+    padding 0
+    overflow visible
+    top 0
+    right 0
+    width 80px
+    height 80px
+    background transparent url('../svg/close.svg') 100% 0 no-repeat
+    background-size 80px 80px
+    opacity .25
+    cursor pointer
+    transition opacity $transition-time
+    &:focus,
+    &:hover
+      opacity 1
+  &__prev,
+  &__next
+    outline none
+    position fixed
+    pointer-events all
+    top 0
+    bottom 0
+    width 80px
+    height 100vh
+    border-style none
+    margin 0
+    padding 0
+    overflow visible
+    background-color transparent 
+    background-repeat no-repeat
+    background-size 80px 80px
+    opacity .25
+    cursor pointer
+    transition opacity $transition-time
+    &:focus,
+    &:hover
+      opacity 1
+  &__prev
+    left 0
+    background-position 0 50%
+    background-image url('../svg/left.svg') 
+  &__next
+    right 0
+    background-position 100% 50%
+    background-image url('../svg/right.svg') 
+    
+    
+  

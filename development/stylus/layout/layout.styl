@@ -22,7 +22,20 @@ html
     
     scroll-behavior smooth
     
+    &.dragover:after
+      content ''
+      display block
+      position fixed
+      top 0
+      bottom 0
+      left 0
+      right 0
+      background rgba(0, 0, 0, .75) url('../svg/upload.svg') 50% 50% no-repeat
+      background-size 20vh 20vh
+      z-index 1000
+    
   .page
+    min-height 100vh
     max-width 100% 
     z-index 3
     position relative
@@ -34,7 +47,6 @@ html
     will-change transform
     
     scroll-behavior smooth
-    
     button
       will-change transform
       cursor pointer
@@ -46,7 +58,9 @@ html
       &:focus,
       &:hover
         transform scale(1.2)
-  
+    &__wrapper
+      position relative
+      padding 0 0 60px 
     &__bg
       
       transition transform .25s linear

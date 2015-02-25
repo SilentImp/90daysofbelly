@@ -6,11 +6,14 @@ body.state-note-form
     max-height 100vh
     .day__overlay
       display block
-    footer
-      display none
+      opacity 1
   .page__bg
     transform translateX(50vw)
     max-height 100vh
+  .note-form
+    opacity 1
+    pointer-events all
+    transition none
     
 @media (max-width: 800px)
 
@@ -38,6 +41,11 @@ body.state-note-form
   background-color $color_white
   z-index 1
   box-sizing border-box
+  
+  display block
+  opacity 0
+  transition opacity 0s linear
+  transition-delay $transition-time
   
   textarea
     pointer-events all
@@ -79,9 +87,19 @@ body.state-note-form
     left 0
     right 0
     margin auto
+    filter grayscale(0)
+    transition transform $transition-time, filter $transition-time, opacity $transition-time
+    will-change transform, filter, opacity
+    opacity 1
     
-    transition transform $transition-time
-    will-change transform
+    &[disabled]
+      transform scale(.8)
+      filter grayscale(100%)
+      opacity .25
+      cursor default
+      &:focus,
+      &:hover
+        transform scale(.8)
     
     &:focus,
     &:hover

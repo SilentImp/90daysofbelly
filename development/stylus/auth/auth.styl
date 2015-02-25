@@ -1,0 +1,57 @@
+@import '../service/**'
+
+button.show-graph
+  display block
+  margin 0
+  padding 0
+  overflow visible
+  pointer-events all
+  outline none
+  width 40px
+  height 40px
+  background-color $color_white 
+  background-image url("../svg/graph.svg") 
+  background-position 50% 50%
+  background-repeat no-repeat 
+  background-size 30px 30px
+  border-radius 100% 
+  cursor pointer
+  transition transform $transition-time
+  will-change transform
+  margin 0 0 20px
+  &:focus,
+  &:hover
+    transform scale(1.2)
+
+.auth
+  position absolute
+  top 20px
+  right 20px
+  
+  a
+    cursor pointer
+    outline none
+    pointer-events all
+    display block
+    width 40px
+    height 40px
+    border-radius 100%
+    background-color $color_white
+    background-position 50% 50%
+    background-repeat no-repeat
+    transition transform $transition-time
+    will-change transform
+    transform scale(1)
+    margin 0 0 20px
+    &:focus,
+    &:hover
+      transform scale(1.2)
+    
+  &__twitter
+    background-image url("../svg/login.svg")
+    background-size 28px 28px
+    
+  &__logout
+    background-image url("../svg/logout.svg")
+    background-size 30px 30px
+    

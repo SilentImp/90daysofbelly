@@ -1,5 +1,35 @@
 @import '../service/**'
 
+body.state-notes
+  .page
+    transform translateX(50vw)
+    max-height 100vh
+    .day__overlay
+      display block
+  .page__bg
+    transform translateX(50vw)
+    max-height 100vh
+  .notes
+    z-index 2
+    opacity 1
+    pointer-events all
+    transition none
+    &__note,
+    &__title
+      pointer-events all
+    
+@media (max-width: 800px)
+
+  body.state-notes
+    .page
+      transform translateX(80vw)
+    .page__bg
+      transform translateX(80vw)
+  body
+    .notes
+      right 20vw
+      width 80vw
+
 .notes
   position fixed
   top 0
@@ -19,12 +49,19 @@
   overflow-x hidden
   -ms-overflow-y auto
   overflow-y auto
-  pointer-events all
-  display none
+  pointer-events none
+  display block
+  opacity 0
+  transition opacity 0s linear
+  transition-delay $transition-time
   &__title
+    display block
     border-bottom 1px solid #ededed
     padding 12px 0
     margin 0 0 24px
+    color $color_grey
+    &:first-letter
+      text-transform uppercase
   &__note
     border-bottom 1px dotted #ededed
     margin 0 0 24px

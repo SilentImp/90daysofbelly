@@ -1,0 +1,62 @@
+@import '../service/**'
+
+body.state-graph
+  .graph
+    opacity 1
+    z-index 2000
+    &__close
+      z-index 2001
+    & ~ .page
+      height 100vh
+      overflow hidden
+      .day__overlay
+        display block
+        opacity 1
+
+.graph
+  opacity 0
+  z-index -3
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  background-color rgba(255, 255, 255, .9) 
+  transition opacity $transition-time, z-index $transition-time 0
+  & *
+    pointer-events all
+    font-family 'Open Sans', 'Helvetica', 'Arial', sans-serif 
+  &__chart
+    height 90%
+    width 100%
+    min-height 90% !important
+    display block 
+  &__close
+    position absolute
+    top 0
+    right 0
+    outline none
+    position fixed
+    pointer-events all
+    border-style none
+    margin 0
+    padding 0
+    overflow visible
+    width 80px
+    height 80px
+    background transparent url('../svg/close-i.svg') 50% 50% no-repeat
+    background-size 40px 40px
+    opacity .5
+    cursor pointer
+    transition opacity $transition-time
+    &:focus,
+    &:hover
+      opacity 1
+  svg
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    margin auto
+    

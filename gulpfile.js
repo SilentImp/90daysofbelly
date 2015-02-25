@@ -62,7 +62,7 @@ gulp.task('js', ['coffee'], function () {
           .pipe(concat('script.js'))
           .pipe(prettify({indentSize: 4}))
           // .pipe(uglify())
-          .pipe(sourcemaps.write({includeContent: false}))
+          .pipe(sourcemaps.write())
           .pipe(gulp.dest(path.production.js));
 });
 
@@ -71,7 +71,8 @@ gulp.task('stylus', function () {
           .pipe(styl())
           .pipe(autoprefixer({
               browsers: ['last 2 versions'],
-              cascade: false
+              cascade: false,
+              map: false
           }))
           .pipe(concat('styles.css'))
           .pipe(csso())

@@ -1,21 +1,51 @@
 @import '../service/**'
 
-.days
-  margin 0 0 60px
-   
 .day
   position relative
   display block
   text-align center
-  height 50vh 
+  height 300px
   width 100%
+  
+  &__footer-copy
+    color $color_white
+    font-family 'Open Sans', 'Helvetica', 'Arial', sans-serif 
+    font-size 9px
+    line-height 13px
+    pointer-events all
+  
+  &__footer
+    position absolute
+    min-height 40px
+    bottom 20px
+    left 20px
+    right 20px
+    padding 0
+  
+  &__copy
+    padding 0 80px 0 0
+    box-sizing border-box
+  
+  &__icons
+    color $color_white
+    font-size 9px
+    line-height 13px
+    font-family 'Open Sans', 'Helvetica', 'Arial', sans-serif 
+    pointer-events all
+    a
+      white-space nowrap
+      pointer-events all
+      color $color_white
+      &:hover
+        text-decoration none
   
   &__made-in-ukraine
     width 40px
     height 40px
     position absolute
     right 0
-    bottom 20px
+    top 50%
+    margin-top -20px
     overflow hidden
     text-indent -9999px
     background-position 50% 50%
@@ -28,32 +58,17 @@
     width 40px
     height 40px
     border-radius 100%
-    margin auto
+    margin auto auto 10px
     position absolute
     left 0
     right 0
-    bottom 20px
+    bottom 100%
     border-style none
     padding 0
     background-position 50% 50%
     background-repeat no-repeat
     background-size 40px 40px
     background-image url("../svg/up.svg") 
-    
-  &__footer-copy
-    color $color_white
-    font-family 'Open Sans', 'Helvetica', 'Arial', sans-serif 
-    font-size 10px
-    line-height 40px
-  
-  &__footer
-    position absolute
-    bottom 0
-    left 20px
-    right 20px
-    height 40px
-    padding 20px 0
-    overflow hidden
   
   &__overlay
     position absolute
@@ -66,11 +81,14 @@
     pointer-events all
     cursor pointer
     display none
+    opacity 0
+    transition box-shadow $transition-time, opacity $transition-time
+    box-shadow inset 0 0 0 100vh rgba(0, 0, 0, 0)
   
   &__media
     position absolute
     left 50%
-    top 25vh
+    top 150px
     height 80px
     width 80px
     margin -40px 0 0 -40px
@@ -115,12 +133,16 @@
     image-rendering -webkit-optimize-contrast
     image-rendering pixelated
     font-family 'Lobster', cursive
-    & + .day__notes
-      position absolute
-      top 10px
-      left 110px 
+    &.ng-hide + .day__notes
+      left auto
+      top auto
+      position static
       
   &__notes
+    position absolute
+    top 10px
+    left 110px 
+      
     outline none    
     text-align center
     text-decoration none
@@ -148,7 +170,7 @@
     line-height 0
     text-indent -999px
     overflow hidden
-    height 50vh
+    height 300px
     width 40px
     background-color $color_white
     z-index 0
@@ -159,7 +181,7 @@
     
   &:last-child
     height 40px
-    padding-bottom 50vh 
+    padding-bottom 300px
     .day__link
       display none
             
@@ -173,10 +195,10 @@
       overflow hidden
       position absolute 
       &:after
-        width calc(50vh - 40px)
-        height calc(50vh - 40px)
+        width 260px
+        height 260px
         left 100%
-        margin 0 0 0 calc(-25vh - 40px)
+        margin 0 0 0 -190px
         border-radius 100%
         background none
         border 40px solid $color_white
@@ -191,12 +213,12 @@
       overflow hidden
       position absolute
       &:after
-        width calc(50vh - 40px)
-        height calc(50vh - 40px)
+        width 260px
+        height 260px
         right 100%
         left auto
         position absolute
-        margin 0 calc(-25vh - 40px) 0 0
+        margin 0 -190px 0 0
         border-radius 100%
         background none
         border 40px solid $color_white
@@ -207,8 +229,8 @@
       position absolute
       right 50%
       left auto
-      top 25vh 
-      margin -40px calc(25vh - 20px) 0 0
+      top 150px
+      margin -40px 130px 0 0
   
   &:nth-child(2n+1):last-child
     .day__weight
@@ -274,10 +296,14 @@
     text-align center
     font-size 0
     time
+      pointer-events all
       font-size 30px
       display inline-block
       vertical-align middle
       line-height 20px
+      b,
+      span
+        pointer-events none
       span
         font-size 20px
         position relative
@@ -287,8 +313,8 @@
     z-index 1
     position absolute
     left 50%
-    top 25vh 
-    margin -40px 0 0 calc(25vh - 20px)
+    top 150px
+    margin -40px 0 0 130px
     height 80px
     width 80px 
     font-size 16px 

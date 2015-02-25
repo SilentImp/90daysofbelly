@@ -1,9 +1,12 @@
 @import '../service/**'
 
+.days
+  margin 60px 0 0
+
 .controls
-  height 20vh
-  line-height 20vh
-  margin 0 0 10vh
+  height 100px
+  line-height 100px
+  margin 0
   text-align center
   display block
   font-size 0
@@ -57,6 +60,9 @@
     position relative
     transition transform $transition-time
     will-change transform
+    &:focus,
+    &:hover
+      transform scale(1.2)
     &[disabled]
       pointer-events none
       transform scale(1)
@@ -77,14 +83,13 @@
       height 20px
       padding 20px 0 0 20px 
       border-radius 0 0 10px 0
-    &:focus,
-    &:hover
-      transform scale(1.2)
     &.note
       background-image url("../svg/notes.svg") 
     &.photo
       background-image url("../svg/photo.svg")
     &.weight
-      background-image url("../svg/weight.svg") 
+      background-image url("../svg/weight.svg")
+    &.fitbit
+      background-image url("../svg/fitbit.svg") 
 
       

@@ -5,9 +5,9 @@
 
   moment.locale('ru');
   // var host = "http://178.79.181.157:8080";
-  
+
   app.controller("AppController", ['$timeout', '$rootScope', '$scope', '$upload', '$http', function ($timeout, $rootScope, $scope, $upload, $http) {
-    
+
     $scope.photo_url = host + '/';
     $scope.page = 'list';
     $scope.weight = null;
@@ -47,7 +47,7 @@
         $scope.first_day = moment(data[0]._id);
         $scope.last_day = moment(data[0]._id).add(90, 'days');
         $scope.today_id = null;
-        
+
         $scope.weight_total = [];
         $scope.time_total = [];
 
@@ -180,9 +180,9 @@
       }
 
       $scope.page = page;
-      
+
       if($scope.page == 'list'){
-        
+
         scroll = $scope.scroll_top;
         $scope.scroll_top = 0;
         window.setTimeout(function(){
@@ -226,87 +226,87 @@
       , scope: false
       , link: function ($scope, element, attrs) {
 
-        var time = $scope.time_total
-            , weight = $scope.weight_total
-            , chart; 
-
-        chart = c3.generate({
-              bindto: '.graph__chart',
-              height: '100%',
-              padding:{
-                top: 80,
-                left: 80,
-                right: 80,
-                bottom: 0
-              },
-              legend: {
-                  show: false
-              },
-              data: {
-                x: 'x',
-                columns: [
-                  time,
-                  weight
-                ]
-              },
-              zoom: {
-                  enabled: true
-              },
-              interaction: {
-                enabled: true
-              },
-              tooltip: {
-                format: {
-                  title: function (d) {
-                    return moment(d).format('DD MMMM YYYY года');
-                  },
-                  value: function (value, ratio, id) {
-                    var format = function(d){
-                      return d + " кг.";
-                    }
-                    return format(value);
-                  }
-                }
-              },
-              axis: {
-                y: {
-                  show: true,
-                  label: {
-                    text: 'Масса, кг.',
-                    position: 'outer-middle'
-                  }
-                },
-                x: {
-                  type: 'timeseries',
-                  tick: {
-                    format: function (d) {
-                      return 91 - $scope.last_day.diff(moment(d), 'days');
-                    }
-                  },
-                  label: {
-                    text: 'Дни',
-                    position: 'outer-middle'
-                  }
-                }
-              }
-          });
-
-        $scope.$watch('weight_total', function(){
-          var time = $scope.time_total
-              , weight = $scope.weight_total;
-
-          time.unshift('x');
-          weight.unshift('Масса');
-
-          
-          chart.load({
-            columns: [
-              time,
-              weight
-            ]
-          });
-
-        });
+        // var time = $scope.time_total
+        //     , weight = $scope.weight_total
+        //     , chart;
+        //
+        // chart = c3.generate({
+        //       bindto: '.graph__chart',
+        //       height: '100%',
+        //       padding:{
+        //         top: 80,
+        //         left: 80,
+        //         right: 80,
+        //         bottom: 0
+        //       },
+        //       legend: {
+        //           show: false
+        //       },
+        //       data: {
+        //         x: 'x',
+        //         columns: [
+        //           time,
+        //           weight
+        //         ]
+        //       },
+        //       zoom: {
+        //           enabled: true
+        //       },
+        //       interaction: {
+        //         enabled: true
+        //       },
+        //       tooltip: {
+        //         format: {
+        //           title: function (d) {
+        //             return moment(d).format('DD MMMM YYYY года');
+        //           },
+        //           value: function (value, ratio, id) {
+        //             var format = function(d){
+        //               return d + " кг.";
+        //             }
+        //             return format(value);
+        //           }
+        //         }
+        //       },
+        //       axis: {
+        //         y: {
+        //           show: true,
+        //           label: {
+        //             text: 'Масса, кг.',
+        //             position: 'outer-middle'
+        //           }
+        //         },
+        //         x: {
+        //           type: 'timeseries',
+        //           tick: {
+        //             format: function (d) {
+        //               return 91 - $scope.last_day.diff(moment(d), 'days');
+        //             }
+        //           },
+        //           label: {
+        //             text: 'Дни',
+        //             position: 'outer-middle'
+        //           }
+        //         }
+        //       }
+        //   });
+        //
+        // $scope.$watch('weight_total', function(){
+        //   var time = $scope.time_total
+        //       , weight = $scope.weight_total;
+        //
+        //   time.unshift('x');
+        //   weight.unshift('Масса');
+        //
+        //
+        //   chart.load({
+        //     columns: [
+        //       time,
+        //       weight
+        //     ]
+        //   });
+        //
+        // });
 
       }
     }

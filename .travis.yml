@@ -6,6 +6,7 @@ branches:
 before_script:
   - sudo apt-get -y install sshpass
   - sshpass -p $DEPLOY_PASS rsync -e 'ssh -o StrictHostKeyChecking=no' -r --exclude 'node_modules' ./* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - ssh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH npm install | pm2 start server.js
 env:
   global:
   - secure: dy5XPBpBuu2QJCSlYN+y7SpZa7WVrEYr2CJdLNrxwmT4hddDs9bR81N5RKtE0eKQ+MLRU57ejgKJkeN027csQU8KZc28Wfvu073uTBamaurSH7zKBFv715DiPc/RnzGjMcWBL0QQXkd1FDho4l23Wd5qtbaXv091Lx8CrOjSzZeZAMbmzG8UJ3ymxtYbFvi6UTX6qmi1EgtdU7HWs5unGjX+s/XyM1xL0xX/5DIFYYEEgWolHkyFYUG6eYE5UbhF0ujaTMSWPBSvfDslf6rQRFEG+jdhaPPJgzLom+L5QX4frESyw+gJV7Scs8hnv0tXDd7ynK2L0vA6yOXNefGxarQfOgoh6WAVvLnbL6OBx7+En/TPIX9dWfP+n3jtmxtaVSb4e2P2CfXOJg7dFa/ZNuDaG9ODjfSlx2Q+l3XI6dhmg5Fq3o56NI5dZqYv+Guyn+LU3b4QUcuO4F/bcBwszJrSVwNJmn5egELtTCATJG+/34V2Oifr9KzJCJc7XbFYdYIXBXTNruwLsmbbB7sUw/DgmVtKDlecH3BuWoyT1IQhLfg4YDomxq1738miBuDrpW3k3SEEMis96M9kl0MTnHRxWUjcSMC1eSPrO0XCaMY/rsIdxBih0mEeKSg+Xsqww90BV+P5pTO6JBeOfxhyQkDGiDK8DMrwCM0Scs+8EOs=

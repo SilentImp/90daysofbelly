@@ -4,6 +4,7 @@ branches:
   only:
   - master
 before_script:
+  - sudo npm install -g bower
   - sudo apt-get -y install sshpass
 script:
   - npm install

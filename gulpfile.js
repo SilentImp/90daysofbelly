@@ -9,9 +9,11 @@ var gulp              = require('gulp')
     , svgo            = require('imagemin-svgo')
     , uglify          = require('gulp-uglify')
     , csso            = require('gulp-csso')
-    , autoprefixer    = require('gulp-autoprefixer')
+    , postcss         = require('gulp-postcss')
+    , autoprefixer    = require('autoprefixer-core')
     , deploy          = require('gulp-gh-pages')
     , prettify        = require('gulp-jsbeautifier')
+    , plumber         = require('gulp-plumber')
     , path            = {
       'development'     : {
         'stylus'        : 'development/stylus/**/*.styl'
@@ -22,7 +24,7 @@ var gulp              = require('gulp')
         , 'css_tmp'     : 'development/css/'
         , 'images'      : 'development/images/**'
         , 'jade'        : 'development/jade/**/*.jade'
-        , 'svg'        : 'development/svg/**/*.svg'
+        , 'svg'         : 'development/svg/**/*.svg'
       }
       , 'production'    : {
         'root'          : 'production/'
@@ -30,12 +32,13 @@ var gulp              = require('gulp')
         , 'js'          : 'production/js/'
         , 'images'      : 'production/images/'
         , 'svg'         : 'production/svg/'
-      } 
+      }
     }
 
 
 gulp.task('images', function () {
   return gulp.src(path.development.images)
+          .pipe(plumber())
           .pipe(imagemin({
               progressive: true,
               svgoPlugins: [{removeViewBox: false}],
@@ -52,12 +55,14 @@ gulp.task('svg', function () {
 
 gulp.task('coffee', function () {
   return gulp.src(path.development.coffee)
+          .pipe(plumber())
           .pipe(coffee({bare: true}))
           .pipe(gulp.dest(path.development.coffee_tmp));
 });
 
 gulp.task('js', ['coffee'], function () {
   return gulp.src(path.development.js)
+          .pipe(plumber())
           .pipe(sourcemaps.init())
           .pipe(concat('script.js'))
           .pipe(prettify({indentSize: 4}))
@@ -67,20 +72,23 @@ gulp.task('js', ['coffee'], function () {
 });
 
 gulp.task('stylus', function () {
+  var processors = [
+          autoprefixer({browsers: ['last 2 versions']})
+    ];
   return gulp.src([path.development.stylus, path.development.css])
+          .pipe(plumber())
+          .pipe(sourcemaps.init())
           .pipe(styl())
-          .pipe(autoprefixer({
-              browsers: ['last 2 versions'],
-              cascade: false,
-              map: false
-          }))
+          .pipe(postcss(processors))
           .pipe(concat('styles.css'))
           .pipe(csso())
+          .pipe(sourcemaps.write())
           .pipe(gulp.dest(path.production.css));
 });
 
 gulp.task('jade', function () {
   return gulp.src(path.development.jade)
+          .pipe(plumber())
           .pipe(jade())
           .pipe(prettify({indentSize: 4}))
           .pipe(gulp.dest(path.production.root));
@@ -89,6 +97,7 @@ gulp.task('jade', function () {
 gulp.task('deploy', function () {
   console.log('deploying');
   return gulp.src('production/**')
+          .pipe(plumber())
           .pipe(deploy({
             cacheDir:   'gh-cache',
             remoteUrl:  'git@github.com:SilentImp/90daysofbelly.git'
@@ -97,6 +106,8 @@ gulp.task('deploy', function () {
           }));
 });
 
+gulp.task('build', ['svg', 'images', 'stylus', 'js', 'jade'], function () {});
+
 gulp.task('watch', function () {
   gulp.watch([path.development.stylus, path.development.css] ,  ['stylus']);
   gulp.watch(path.development.coffee,                           ['js']);
@@ -104,5 +115,4 @@ gulp.task('watch', function () {
   gulp.watch(path.development.jade,                             ['jade']);
 });
 
-gulp.task('default', ['stylus', 'js', 'jade']);
-
+gulp.task('default', ['stylus', 'js', 'jade', 'images', 'svg']);

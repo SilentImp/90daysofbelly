@@ -11,17 +11,17 @@ html
   position relative
   -ms-overflow-x hidden
   overflow-x hidden
+
   body
     position relative
-    min-height 100% 
+    min-height 100%
     font-family 'Lobster', cursive
     background-color $color_blue
     color $color_blue
     -ms-overflow-x hidden
     overflow-x hidden
-    
     scroll-behavior smooth
-    
+
     &.dragover:after
       content ''
       display block
@@ -33,20 +33,19 @@ html
       background rgba(0, 0, 0, .75) url('../svg/upload.svg') 50% 50% no-repeat
       background-size 20vh 20vh
       z-index 1000
-    
+
   .page
     min-height 100vh
-    max-width 100% 
+    max-width 100%
     z-index 3
     position relative
     overflow hidden
     pointer-events all
-    
     transition transform .25s linear
     transform translateX(0)
     will-change transform
-    
     scroll-behavior smooth
+
     button
       will-change transform
       cursor pointer
@@ -58,29 +57,29 @@ html
       &:focus,
       &:hover
         transform scale(1.2)
+
     &__wrapper
       position relative
-      padding 0 0 60px 
+      padding 0 0 60px
+      min-height 100vh
+      box-sizing border-box
+
     &__bg
-      
       transition transform .25s linear
       transform translateX(0)
       will-change transform
-      
       position fixed
       top 0
       bottom 0
       right 0
       left 0
       z-index 2
-
-      background-color $color_blue 
+      background-color $color_blue
       background-image url('../images/belly.png')
       background-position  50% 50%
       background-repeat no-repeat
       background-attachment fixed
       background-size cover
-      
       -ms-interpolation-mode nearest-neighbor
       image-rendering -moz-crisp-edges
       image-rendering -o-crisp-edges

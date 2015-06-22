@@ -9,7 +9,8 @@ before_script:
 - sshpass -p $DEPLOY_PASS rsync -e 'ssh -o StrictHostKeyChecking=no' -r --exclude
   'node_modules' ./* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 after_success:
-- sshpass -p $DEPLOY_PASS ssh $DEPLOY_USER@$DEPLOY_HOST export HOMEDIR=$DEPLOY_PATH && $DEPLOY_PATH/deploy.sh
+- sshpass -p $DEPLOY_PASS ssh $DEPLOY_USER@$DEPLOY_HOST export HOMEDIR=$DEPLOY_PATH
+- sshpass -p $DEPLOY_PASS ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
 
 env:
   global:

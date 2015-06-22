@@ -20,7 +20,7 @@ My CV: [http://silentimp.info/][4]
 
 EMail:  [thesilentimp@gmail.com][5]
 
-Skype:  [ravencry][6]]
+Skype:  [ravencry][6]
 
 GitHub: [http://github.com/SilentImp][7]
 

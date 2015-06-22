@@ -1,10 +1,9 @@
 (function(){
 
   var app = angular.module("BellyDays",['angularFileUpload'])
-      , host = "http://localhost:8080";
+      , host = "";
 
   moment.locale('ru');
-  // var host = "http://178.79.181.157:8080";
 
   app.controller("AppController", ['$timeout', '$rootScope', '$scope', '$upload', '$http', function ($timeout, $rootScope, $scope, $upload, $http) {
 

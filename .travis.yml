@@ -3,14 +3,14 @@ language: node_js
 branches:
   only:
   - server
+
 before_script:
 - sudo apt-get -y install sshpass
 - sshpass -p $DEPLOY_PASS rsync -e 'ssh -o StrictHostKeyChecking=no' -r --exclude
   'node_modules' ./* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 after_success:
-- sshpass -p $DEPLOY_PASS ssh $DEPLOY_USER@$DEPLOY_HOST cd $DEPLOY_PATH &> '/websites/cd.txt'
-  && npm install &> '/websites/log.txt' && pm2 start server.js &> '/websites/done.txt'
-  &
+- sshpass -p $DEPLOY_PASS ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+
 env:
   global:
   - secure: S9DsueQI7/a7/oFHcT8P+avWXKAcWcovR7XD5uf3WpmOOkn9j8HGh9+lJhhDA6/i+R8TTQq04Gygl1Jnc0LvKqDB81+nUB78EAWPXK/5yFj/HpEril70GdzVle+R0mS5DkAep/VpJUy+tBWPyLhbYs77MXR8cq8Fu+trIk52DqYciLvnXgaYbh/dQLr9pGIDVrE2MEc+NXTWCU1GB0saSC9orWm7W3sL41yP0qvgsj/xGA8jln3KiFfxi6m9Fnvxn62k3wHGm/VAUoT6oA8h+aAS+QmmkM414jT9r3ANIUBurHwGoKpvqk858hQBgXJ8xMzQjtZVHhRc7aov2TuP5KCGnSftMlRwpkeqK2g+/LrPY8nZVf29KGG/PFh76nH3JxdwaM32QJU2Rt+hPdExFE7JUWz0+k2O0cnit9M+wPaOwb1pdUJG2bWdVFiTusAgM2m7PoGmD/BpcrGZYYI0anU72TJR51Ey9zQr4WMP2G5sMyS3UeAg80l9gxlshWkxWi53skkd68Onyl3YW+6Tg/t7A4I5NYD/CgzGwbaHxIjAfHIBV3xEqhrbHX7LKWKI/lXY2evP75R2OEr5DKwNCeRuRSg72f7qxQkQZNKGo+Ro4i5zgA0VElRjIS0Iw1gofY2QQtVhXCHoamjzfPnEwOcXF20zwY6AHbgXjDWB3gA=

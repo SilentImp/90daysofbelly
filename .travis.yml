@@ -4,7 +4,7 @@ branches:
   only:
   - master
 script:
-  - sudo npm install -g bower
+  - npm install -g bower
   - sudo apt-get -y install sshpass
   - bower install
   - gulp build

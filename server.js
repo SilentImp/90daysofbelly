@@ -13,7 +13,7 @@ var express           = require('express')
     , TwitterStrategy = require('passport-twitter').Strategy
     , options         = {
       dotfiles: 'ignore'
-      , extensions: ['xml']
+      , extensions: ['html', 'css', 'js', 'png', 'jpg', 'svg']
       , index: false
     }
     , image_options   = {

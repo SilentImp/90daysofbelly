@@ -37,7 +37,7 @@ app.use(express.static('public', options))
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
       next();
     })
-    .use(session({ 
+    .use(session({
       secret: 'ilovescotchscotchyscotchscotch',
       resave: true,
       saveUninitialized: true
@@ -46,7 +46,7 @@ app.use(express.static('public', options))
     .use(passport.session())
     .use(flash());
 
-// Login 
+// Login
 app.get('/login/', passport.authenticate('twitter'));
 
 // Get days list
@@ -65,7 +65,5 @@ app.post('/note/', BellyController.addNote);
 app.listen(port);
 console.log('Server started on http://178.79.181.157:' + port+'/');
 
-// Auto efresh script and restart
-hookshot('refs/heads/server', 'git pull && pm2 restart server.js').listen(9001);
-
-
+// Auto refresh script and restart
+// hookshot('refs/heads/server', 'git pull && pm2 restart server.js').listen(9001);

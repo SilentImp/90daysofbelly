@@ -4,7 +4,7 @@ branches:
   only:
   - server
 before_script:
-  - apt-get install sshpass
+  - sudo apt-get -y install sshpass
   - sshpass -p $DEPLOY_PASS scp ./* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 env:
   global:
